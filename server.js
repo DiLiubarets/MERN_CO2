@@ -41,6 +41,7 @@ app.use("/api/users", users);
 app.use("/api/sensor", sensor);
 
 
+
 const wsServer = new ws.Server({ noServer: true });
 wsServer.on('connection', (socket, req) => {
   let key = req.url.substring(6, req.url.length)

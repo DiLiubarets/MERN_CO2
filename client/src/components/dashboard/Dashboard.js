@@ -75,7 +75,7 @@ class Dashboard extends Component {
 
     //request historical
     ws.onopen = function() {
-      ws.send(Date.now() - 21600000);
+      ws.send(Date.now() - 144000000);
     };
 
     //get live and historical
