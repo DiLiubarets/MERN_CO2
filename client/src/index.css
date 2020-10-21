@@ -1,19 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@700&display=swap');
+
 body {
   margin: 0;
   padding: 0;
-  font-family: Helvetica, Arial, sans-serif;
+  font-family: 'Poppins', Arial, Helvetica, sans-serif;
+  font-weight: 400;
   color: #113031;
+  line-height: 2;
 }
-h1, h2, h3, h4, h5, h6 {
-  font-weight: bold;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Lora', 'Times New Roman', Times, serif;
 }
-.our-buttons {
-  font-weight: 600;
-  font-family: Helvetica, Arial, sans-serif !important;
-  text-transform: uppercase;
+.green-btn {
+    border-radius: 999px !important;
+    margin: 20px;
+    font-size: 14px !important;
+    font-weight: 600;
+    color: #113031 !important;
+    background-color: #00FF45 !important;
+    border: none !important;
+    box-shadow: 0px 3px 15px rgba(0,0,0,0) !important;
+    transition: .5s background-color;
 }
-/* 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-} */
+.green-btn:hover {
+  background-color: #FFFF00 !important;
+}
