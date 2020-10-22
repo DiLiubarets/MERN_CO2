@@ -58,7 +58,7 @@ class Login extends Component {
 
     return (
       <Row>
-        <Col sm={8} className="mx-auto mt-5">
+        <Col xs={10} sm={8} className="mx-auto mt-5">
           <Link to="/" className="btn-flat waves-effect">
             <i className="material-icons left">keyboard_backspace</i>Back to
             home
@@ -69,7 +69,6 @@ class Login extends Component {
           </p>
           <Form noValidate onSubmit={this.onSubmit}>
             <Form.Group>
-              <Form.Label for="contact-name">Name</Form.Label>
               <Form.Control
                 placeholder="Email"
                 name="email"
@@ -88,7 +87,6 @@ class Login extends Component {
               </span>
             </Form.Group>
             <Form.Group>
-              <Form.Label for="contact-name">Name</Form.Label>
               <Form.Control
                 placeholder="Password"
                 name="password"

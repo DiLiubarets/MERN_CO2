@@ -12,9 +12,7 @@ class Landing extends Component {
       <Row>
         <Col sm={8} className="mx-auto">
           <Jumbotron className="transparent">
-            <h1 className="text-center mb-4">
-              Full-stack app with user authentication via passport and JWTs
-            </h1>
+            <h1 className="text-center my-4">Get to know the CO2 around you</h1>
             <p className="text-center">
               Our application allows users to understand the quality of the air
               around them through the power of IoT. See what CO2 levels are

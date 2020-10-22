@@ -11,11 +11,14 @@ body {
 }
 h1,
 h2,
-h3,
+h3 {
+  font-family: 'Lora', 'Times New Roman', Times, serif;
+}
 h4,
 h5,
 h6 {
-  font-family: 'Lora', 'Times New Roman', Times, serif;
+  font-family: 'Poppins', Arial, Helvetica, sans-serif;
+  font-weight: 600;
 }
 .green-btn {
     border-radius: 999px !important;

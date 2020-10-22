@@ -13,6 +13,7 @@ import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 import PrivateRoute from "./components/private-route/PrivateRoute";
 import Dashboard from "./components/dashboard/Dashboard";
+import Dashboard2 from "./components/dashboard/Dashboard2";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Container from "react-bootstrap/Container";
@@ -40,6 +41,7 @@ if (localStorage.jwtToken) {
 class App extends Component {
   render() {
     return (
+      <div className="px-4">
       <Container>
       <Provider store={store}>
         <Router>
@@ -48,6 +50,7 @@ class App extends Component {
             <Route exact path="/" component={Landing} />
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
+            <Route exact path="/dashboard2" component={Dashboard2} />
             <Switch>
               <PrivateRoute exact path="/dashboard" component={Dashboard} />
             </Switch>
@@ -55,6 +58,7 @@ class App extends Component {
         </Router>
       </Provider>
       </Container>
+      </div>
     );
   }
 }
