@@ -48,7 +48,7 @@ wsServer.on('connection', (socket, req) => {
   sensor.socketSetter(key, socket)
   console.log(key, "opened")
   socket.on('close', () => { console.log(key, "closed"); sensor.socketCleaner(key) })
-  socket.on('message', (startTime) => { sensor.sendHistoricalData(key, startTime) })
+  socket.on('message', (params) => { sensor.sendHistoricalData(key, JSON.parse(params)) })
 });
 
 

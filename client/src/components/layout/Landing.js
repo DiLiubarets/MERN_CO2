@@ -13,8 +13,14 @@ class Landing extends Component {
               scratch
             </h4> */}
             <p className="flow-text grey-text text-darken-1">
-              Full-stack app with user authentication via
-              passport and JWTs
+              Get to know the CO2 around you
+            </p>
+            <p>
+              {" "}
+              Our application allows users to understand the quality of the air
+              around them through the power of IoT. See what CO2 levels are
+              right now, in the past, and compare your stored data over time to
+              make informed decisions for your needs.
             </p>
             <br />
             <div className="col s6">
@@ -23,7 +29,7 @@ class Landing extends Component {
                 style={{
                   width: "140px",
                   borderRadius: "3px",
-                  letterSpacing: "1.5px"
+                  letterSpacing: "1.5px",
                 }}
                 className="btn btn-large waves-effect waves-light hoverable blue accent-3"
               >
@@ -36,7 +42,7 @@ class Landing extends Component {
                 style={{
                   width: "140px",
                   borderRadius: "3px",
-                  letterSpacing: "1.5px"
+                  letterSpacing: "1.5px",
                 }}
                 className="btn btn-large btn-flat waves-effect white black-text"
               >
