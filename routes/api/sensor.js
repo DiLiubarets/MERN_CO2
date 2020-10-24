@@ -32,9 +32,8 @@ const socketCleaner = function (apiKey) {
   delete socketObject[apiKey];
 };
 
-const sendHistoricalData = function (apiKey, startTime) {
+const sendHistoricalData = function (apiKey, params) {
   if (socketObject[apiKey]) {
-    startTime = parseInt(startTime)
     User.aggregate(
       [
         { $match: { apiKey: apiKey } },
@@ -44,7 +43,10 @@ const sendHistoricalData = function (apiKey, startTime) {
               $filter: {
                 input: "$sensorData",
                 as: "data",
-                cond: { $gte: ["$$data.timestamp", startTime] },
+                cond: { $and: [
+                  { $gte: ["$$data.timestamp", params.start] },
+                  { $lte: ["$$data.timestamp", params.stop] }
+                ] }
               },
             },
           },
