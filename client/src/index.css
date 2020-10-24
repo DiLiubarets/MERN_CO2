@@ -20,9 +20,9 @@ h6 {
   font-family: 'Poppins', Arial, Helvetica, sans-serif;
   font-weight: 600;
 }
+
 .green-btn {
     border-radius: 999px !important;
-    margin: 20px;
     font-size: 14px !important;
     font-weight: 600;
     color: #113031 !important;
@@ -33,4 +33,21 @@ h6 {
 }
 .green-btn:hover {
   background-color: #FFFF00 !important;
+}
+.row .col{
+  float: none !important;
+  margin-left: auto;
+  margin-right: auto;
+}
+.m20 {
+  margin: 20px;
+}
+.mb20 {
+  margin-bottom: 20px;
+}
+.no-margin {
+  margin: 0;
+}
+.no-padding {
+  padding: 0;
 }

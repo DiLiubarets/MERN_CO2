@@ -4,10 +4,6 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { loginUser } from "../../actions/authActions";
 import classnames from "classnames";
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 
 class Login extends Component {
   constructor() {
@@ -57,59 +53,56 @@ class Login extends Component {
     const { errors } = this.state;
 
     return (
-      <Row>
-        <Col xs={10} sm={8} className="mx-auto mt-5">
-          <Link to="/" className="btn-flat waves-effect">
+      <div className="row m20">
+        <div className="col s10 m8 no-padding">
+          <Link to="/" className="btn-flat no-padding">
             <i className="material-icons left">keyboard_backspace</i>Back to
             home
           </Link>
           <h4>Log in below</h4>
-          <p className="grey-text text-darken-1">
+          <p>
             Don't have an account? <Link to="/register">Register</Link>
           </p>
-          <Form noValidate onSubmit={this.onSubmit}>
-            <Form.Group>
-              <Form.Control
-                placeholder="Email"
-                name="email"
+          <form noValidate onSubmit={this.onSubmit}>
+            <div className="input-field col s12 no-padding">
+              <input
                 onChange={this.onChange}
                 value={this.state.email}
                 error={errors.email}
                 id="email"
                 type="email"
                 className={classnames("", {
-                  invalid: errors.email || errors.emailnotfound,
+                  invalid: errors.email,
                 })}
               />
-              <span className="red-text">
-                {errors.email}
-                {errors.emailnotfound}
-              </span>
-            </Form.Group>
-            <Form.Group>
-              <Form.Control
-                placeholder="Password"
-                name="password"
+              <label htmlFor="email">Email</label>
+              <span className="red-text">{errors.email}</span>
+            </div>
+            <div className="input-field col s12 no-padding">
+              <input
                 onChange={this.onChange}
                 value={this.state.password}
                 error={errors.password}
                 id="password"
                 type="password"
                 className={classnames("", {
-                  invalid: errors.password || errors.passwordincorrect,
+                  invalid: errors.password,
                 })}
               />
-              <span className="red-text">
-                {errors.password}
-                {errors.passwordincorrect}
-              </span>
-            </Form.Group>
-            <Button type="submit" className="green-btn ml-0">
-              Login
-            </Button>
-          </Form>
-        </Col>
-      </Row>
+              <label htmlFor="password">Password</label>
+              <span className="red-text">{errors.password}</span>
+            </div>
+            <div className="col s12 no-padding">
+              <button
+                type="submit"
+                className="btn-large green-btn"
+              >
+                Log In
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
     );
   }
 }
