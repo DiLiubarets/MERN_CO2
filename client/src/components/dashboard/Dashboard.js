@@ -9,6 +9,8 @@ let ws = null;
 var massPopChart;
 let start = Date.now() - 24 * 60 * 60 * 1000;
 let stop = Date.now();
+let startTime = 0
+let stopTime = 0
 var arr = [];
 var labels = [];
 var chartData = {
@@ -72,9 +74,11 @@ class Dashboard extends Component {
   }
 
   componentDidMount() {
+
+
     let startOptions = {
       onSelect: function(date) {
-        start = new Date(date).getTime();
+        start = new Date(date).getTime() - (new Date(date).getTimezoneOffset())*60*1000 + startTime;
       },
     };
     var startPicker = document.querySelectorAll(".startPicker");
@@ -82,17 +86,38 @@ class Dashboard extends Component {
 
     let stopOptions = {
       onSelect: function(date) {
-        stop = new Date(date).getTime();
+        stop = new Date(date).getTime() -  (new Date(date).getTimezoneOffset())*60*1000 + stopTime;
       },
     };
     var stopPicker = document.querySelectorAll(".stopPicker");
     M.Datepicker.init(stopPicker, stopOptions);
 
-  
-    var stopTimePicker = document.querySelectorAll('.stopTimePicker');
-    M.Timepicker.init(stopTimePicker);
+
+
+    let startOptionsTime = {
+      onSelect: function(hour, minute) {
+        console.log(hour, minute)
+        start = start - startTime
+        startTime = hour*60*60*1000 + minute*60*1000
+        start = start + startTime
+      },
+      twelveHour: false
+    };
     var startTimePicker = document.querySelectorAll('.startTimePicker');
-    M.Timepicker.init(startTimePicker);
+    M.Timepicker.init(startTimePicker, startOptionsTime);
+
+    let stopOptionsTime = {
+      onSelect: function(hour, minute) {
+        stop = stop - stopTime
+        stopTime = hour*60*60*1000 + minute*60*1000
+        stop = stop + stopTime
+      },
+      twelveHour: false
+    };
+    var stopTimePicker = document.querySelectorAll('.stopTimePicker');
+    M.Timepicker.init(stopTimePicker, stopOptionsTime);
+
+
 
     const { user } = this.props.auth;
     let context = this;
@@ -125,7 +150,7 @@ class Dashboard extends Component {
           for (let j = savedIndex; j < data.historicalData.length; j++) {
             if (
               data.historicalData[j].timestamp >
-              start + (i + 1) * binDuration
+              start + (i + 1) * binDuration || start + (i + 1) * binDuration < data.historicalData[0].timestamp
             ) {
               ///cheaking if greater than startime + binduration*
               //console.log("break")
@@ -242,7 +267,7 @@ class Dashboard extends Component {
                 marginTop: "1rem",
               }}
               onClick={this.onLogoutClick}
-              className="btn btn-large waves-effect waves-light hoverable blue accent-3"
+              className="waves-effect waves-light btn"
             >
               Logout
             </button>
