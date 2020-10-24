@@ -4,10 +4,6 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { registerUser } from "../../actions/authActions";
 import classnames from "classnames";
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 
 class Register extends Component {
   constructor() {
@@ -57,21 +53,19 @@ class Register extends Component {
     const { errors } = this.state;
 
     return (
-      <Row>
-        <Col xs={10} sm={8} className="mx-auto mt-5">
-          <Link to="/" className="btn-flat waves-effect">
-            <i className="material-icons left">keyboard_backspace</i> Back to
+      <div className="row m20">
+        <div className="col s10 m8 no-padding">
+          <Link to="/" className="btn-flat no-padding">
+            <i className="material-icons left">keyboard_backspace</i>Back to
             home
           </Link>
           <h4>Register below</h4>
-          <p className="grey-text text-darken-1">
+          <p>
             Already have an account? <Link to="/login">Log in</Link>
           </p>
-          <Form noValidate onSubmit={this.onSubmit}>
-            <Form.Group>
-              <Form.Control
-                placeholder="Full Name"
-                name="Name"
+          <form noValidate onSubmit={this.onSubmit}>
+            <div className="input-field col s12 no-padding">
+              <input
                 onChange={this.onChange}
                 value={this.state.name}
                 error={errors.name}
@@ -80,21 +74,12 @@ class Register extends Component {
                 className={classnames("", {
                   invalid: errors.name,
                 })}
-                // onChange={this.onChange}
-                // value={this.state.name}
-                // error={errors.name}
-                // id="name"
-                // type="text"
-                // className={classnames("", {
-                //   invalid: errors.name
-                // })}
               />
+              <label htmlFor="name">Name</label>
               <span className="red-text">{errors.name}</span>
-            </Form.Group>
-            <Form.Group>
-              <Form.Control
-                placeholder="Email"
-                name="email"
+            </div>
+            <div className="input-field col s12 no-padding">
+              <input
                 onChange={this.onChange}
                 value={this.state.email}
                 error={errors.email}
@@ -104,12 +89,11 @@ class Register extends Component {
                   invalid: errors.email,
                 })}
               />
+              <label htmlFor="email">Email</label>
               <span className="red-text">{errors.email}</span>
-            </Form.Group>
-            <Form.Group>
-              <Form.Control
-                placeholder="Choose a secure password"
-                name="password"
+            </div>
+            <div className="input-field col s12 no-padding">
+              <input
                 onChange={this.onChange}
                 value={this.state.password}
                 error={errors.password}
@@ -119,12 +103,11 @@ class Register extends Component {
                   invalid: errors.password,
                 })}
               />
+              <label htmlFor="password">Password</label>
               <span className="red-text">{errors.password}</span>
-            </Form.Group>
-            <Form.Group>
-              <Form.Control
-                placeholder="Confirm your password"
-                name="password2"
+            </div>
+            <div className="input-field col s12 no-padding">
+              <input
                 onChange={this.onChange}
                 value={this.state.password2}
                 error={errors.password2}
@@ -134,14 +117,20 @@ class Register extends Component {
                   invalid: errors.password2,
                 })}
               />
+              <label htmlFor="password2">Confirm Password</label>
               <span className="red-text">{errors.password2}</span>
-            </Form.Group>
-            <Button type="submit" className="green-btn ml-0">
-              Sign up
-            </Button>
-          </Form>
-        </Col>
-      </Row>
+            </div>
+            <div className="col s12 no-padding">
+              <button
+                type="submit"
+                className="btn-large green-btn"
+              >
+                Sign up
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
     );
   }
 }
