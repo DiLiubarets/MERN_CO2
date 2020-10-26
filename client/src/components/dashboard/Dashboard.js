@@ -4,6 +4,9 @@ import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
 import Chart from "../../components/chart/Chart";
 import M from "materialize-css";
+import "./Dashboard.css";
+import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
+import "react-circular-progressbar/dist/styles.css";
 
 let ws = null;
 var massPopChart;
@@ -88,10 +91,9 @@ class Dashboard extends Component {
     var stopPicker = document.querySelectorAll(".stopPicker");
     M.Datepicker.init(stopPicker, stopOptions);
 
-  
-    var stopTimePicker = document.querySelectorAll('.stopTimePicker');
+    var stopTimePicker = document.querySelectorAll(".stopTimePicker");
     M.Timepicker.init(stopTimePicker);
-    var startTimePicker = document.querySelectorAll('.startTimePicker');
+    var startTimePicker = document.querySelectorAll(".startTimePicker");
     M.Timepicker.init(startTimePicker);
 
     const { user } = this.props.auth;
@@ -183,70 +185,153 @@ class Dashboard extends Component {
     const { user } = this.props.auth;
 
     return (
-      <div style={{ height: "75vh" }} className="container align-wrapper">
-        <div className="row">
-          <div className="landing-copy col s12 center-align">
-            <h4>
-              <b>Hey,</b> {user.name.split(" ")[0]}
-              <p className="flow-text grey-text text-darken-1">
-                You are logged into a full-stack{" "}
-                <span style={{ fontFamily: "monospace" }}>MERN</span> app 👏
-              </p>
-              <p>CO₂: {this.state.liveSensor} ppm</p>
-            </h4>
-            <p> Your API key: {user.apiKey}</p>
-            <div className="row">
-              <form className="col s12">
-                <div class="row">
-                  <div className="input-field  col s4">
-                    <label for="startDay">Start day</label>
-                    <input id="startDay" type="text" class="startPicker" />
-                    </div>
-                    <div class="input-field  col s4">
-                      <label for="stopDay">Stop day</label>
-                      <input id="stopDay" type="text" class="stopPicker" />
-                    </div>    
-                  </div>
-                  <div class="row">
-                    <div class="input-field col s4">
-                      <label for="startTime">Start time</label>
-                      <input id="startTime" type="text" class="startTimePicker" />
-                    </div>
-                    <div class="input-field col s4">
-                      <label for="stopTime">Stop time</label>
-                      <input id="stopTime" type="text" class="stopTimePicker" />
-                    </div>
-                  </div>
-                  
-              
-              </form>
-              <div class="col s4">
-                    <a
-                      class="waves-effect waves-light btn"
-                      id="getData"
-                      onClick={this.getData}
-                    >
-                      Get Data
-                    </a>
-                  </div>
+      <div>
+        <div className="row m20">
+          <div className="col s12 m10 l8">
+            <div className="card horizontal transparent">
+              <div className="card-image">
+                <span
+                  role="img"
+                  style={{ fontSize: "100px" }}
+                  aria-label="Wave Emoji"
+                >
+                  &#128075;
+                </span>
+              </div>
+              <div className="card-stacked">
+                <div className="card-content">
+                  <h6 className="no-margin">Hi, {user.name.split(" ")[0]}</h6>
+                  <h3 className="welcome-message">
+                    You are logged into a full-stack{" "}
+                    <span style={{ fontFamily: "monospace" }}>MERN</span> app
+                  </h3>
+                  <p> Your API key: {user.apiKey}</p>
+                </div>
+              </div>
             </div>
-
-            <div>
-              <Chart data={chartData} setChart={this.setChart} />
-            </div>
-            <button
-              style={{
-                width: "150px",
-                borderRadius: "3px",
-                letterSpacing: "1.5px",
-                marginTop: "1rem",
-              }}
-              onClick={this.onLogoutClick}
-              className="btn btn-large waves-effect waves-light hoverable blue accent-3"
-            >
-              Logout
-            </button>
           </div>
+        </div>
+        <div className="row m20">
+          <div className="col s12 m4">
+            <div className="card-panel dashboard-card">
+              <h6 className="center-align m20">Current CO2 Level</h6>
+              <CircularProgressbar
+                value={500}
+                maxValue={5000}
+                text={"500 ppm"}
+                styles={buildStyles({
+                  textSize: "16px",
+                  // Colors
+                  pathColor: `rgba(0, 255, 69, ${100 / 100})`,
+                  textColor: "#113031",
+                  trailColor: `rgba(0, 255, 69, ${30 / 100})`,
+                })}
+              />
+              {/* //switch out the 500 ppm to say {this.state.liveSensor}s
+              <CircularProgressbar value={this.state.liveSensor} maxValue={5000} text={this.state.liveSensor} />; */}
+              <p className="center-align m20">
+                Rating (Acceptable, Hazardous, etc)
+              </p>
+            </div>
+          </div>
+          <div className="col m8">
+            <div className="card-panel dashboard-card">
+              <Chart data={chartData} setChart={this.setChart} />
+              <form className="mt20">
+                <div className="row no-margin no-padding">
+                  <div className="input-field dashboard-input col s4">
+                    <input id="startDay" type="date" className="startPicker" />
+                    <label for="startDay" className="picker mb20">
+                      First day
+                    </label>
+                  </div>
+                  <div className="input-field dashboard-input col s4">
+                    <input id="stopDay" type="date" className="stopPicker" />
+                    <label for="stopDay" className="picker mb20">
+                      Last day
+                    </label>
+                  </div>
+                </div>
+                <div className="row no-margin no-padding">
+                  <div className="input-field  col s4">
+                    <input
+                      id="startTime"
+                      type="time"
+                      className="startTimePicker"
+                    />
+                    <label for="startTime" className="picker">
+                      Start time
+                    </label>
+                  </div>
+                  <div className="input-field col s4">
+                    <input
+                      id="stopTime"
+                      type="time"
+                      className="stopTimePicker"
+                    />
+                    <label for="stopTime" className="picker">
+                      End time
+                    </label>
+                  </div>
+                </div>
+              </form>
+              <a
+                className="green-btn btn-large"
+                id="getData"
+                onClick={this.getData}
+              >
+                Get Data
+              </a>
+            </div>
+          </div>
+          {/* <div className="row">
+          <div className="col s12 m6 l4">
+            <form>
+              <div className="row">
+                <div className="input-field  col s4">
+                  <label for="startDay">Start day</label>
+                  <input id="startDay" type="text" className="startPicker" />
+                </div>
+                <div className="input-field  col s4">
+                  <label for="stopDay">Stop day</label>
+                  <input id="stopDay" type="text" className="stopPicker" />
+                </div>
+              </div>
+              <div className="row">
+                <div className="input-field col s4">
+                  <label for="startTime">Start time</label>
+                  <input id="startTime" type="text" className="startTimePicker" />
+                </div>
+                <div className="input-field col s4">
+                  <label for="stopTime">Stop time</label>
+                  <input id="stopTime" type="text" className="stopTimePicker" />
+                </div>
+              </div>
+            </form>
+          </div>
+          <div className="col s4">
+            <a
+              className="waves-effect waves-light btn"
+              id="getData"
+              onClick={this.getData}
+            >
+              Get Data
+            </a>
+          </div>
+        </div> */}
+
+          <button
+            style={{
+              width: "150px",
+              borderRadius: "3px",
+              letterSpacing: "1.5px",
+              marginTop: "1rem",
+            }}
+            onClick={this.onLogoutClick}
+            className="btn btn-large waves-effect waves-light hoverable blue accent-3"
+          >
+            Logout
+          </button>
         </div>
       </div>
     );

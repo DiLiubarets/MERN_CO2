@@ -1,0 +1,22 @@
+.CircularProgressbar-text {
+  font-family: "Lora", "Times New Roman", Times, serif;
+}
+.dashboard-card {
+  border-radius: 30px !important;
+  box-shadow: none !important;
+}
+.picker {
+  font-size: 14px !important;
+  font-weight: 600;
+  color: #113031 !important;
+  padding: 0 5px 5px 5px;
+  text-decoration: none !important;
+}
+input:not([type]),
+input[type="time"]:not(.browser-default),
+input[type="date"]:not(.browser-default),
+input[type="datetime"]:not(.browser-default),
+input[type="datetime-local"]:not(.browser-default),
+textarea.materialize-textarea {
+  border: none !important;
+}
