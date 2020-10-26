@@ -266,7 +266,7 @@ class Dashboard extends Component {
             <div className="card-panel dashboard-card">
               <Chart data={chartData} setChart={this.setChart} />
               <form className="mt20">
-                <div className="row no-margin no-padding">
+                <div className="row no-margin no-padding" >
                   <div className="input-field dashboard-input col s4">
                     <input id="startDay" type="date" className="startPicker" />
                     <label for="startDay" className="picker mb20">
@@ -304,7 +304,7 @@ class Dashboard extends Component {
                 </div>
               </form>
               <a
-                className="green-btn btn-large"
+                className="green-btn btn-small"
                 id="getData"
                 onClick={this.getData}
               >

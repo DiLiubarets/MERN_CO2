@@ -9,7 +9,7 @@
   font-size: 14px !important;
   font-weight: 600;
   color: #113031 !important;
-  padding: 0 5px 5px 5px;
+  padding-left: 2em;
   text-decoration: none !important;
 }
 input:not([type]),
@@ -18,5 +18,20 @@ input[type="date"]:not(.browser-default),
 input[type="datetime"]:not(.browser-default),
 input[type="datetime-local"]:not(.browser-default),
 textarea.materialize-textarea {
-  border: none !important;
+  /* border: none !important; */
 }
+
+.picker__date-display {
+  background-color:#69f0ae;
+}
+.picker__weekday-display {
+  background-color:#69f0ae;
+}
+/* .picker__day--selected, .picker__day--selected:hover, .picker--focused .picker__day--selected {
+  background-color:blue;
+} */
+
+.picker__date-display { background-color: #69f0ae; }
+.datepicker-date-display {
+  background-color: #69f0ae;;
+ }
