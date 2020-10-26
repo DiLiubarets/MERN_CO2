@@ -9,7 +9,7 @@ class Landing extends Component {
         <div className="col s12 m10 l8 col-centered">
           <div className="card transparent center">
           <div className="card-content landing-style">
-            <div className="card-title"><h2>Get to know the CO2 around you</h2></div>
+            <div className="card-title"><h2>Get to know the CO₂ around you</h2></div>
             <p>
               Our application allows users to understand the quality of the air
               around them through the power of the IoT. See what CO2 levels are

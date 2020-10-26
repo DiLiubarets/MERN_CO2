@@ -12,8 +12,8 @@ let ws = null;
 var massPopChart;
 let start = Date.now() - 24 * 60 * 60 * 1000;
 let stop = Date.now();
-let startTime = 0
-let stopTime = 0
+let startTime = 0;
+let stopTime = 0;
 var arr = [];
 var labels = [];
 var chartData = {
@@ -77,54 +77,57 @@ class Dashboard extends Component {
   }
 
   componentDidMount() {
-
-
     let startOptions = {
-      onSelect: function(date) {
-        start = new Date(date).getTime() - (new Date(date).getTimezoneOffset())*60*1000 + startTime;
+      onSelect: function (date) {
+        start =
+          new Date(date).getTime() -
+          new Date(date).getTimezoneOffset() * 60 * 1000 +
+          startTime;
       },
     };
     var startPicker = document.querySelectorAll(".startPicker");
     M.Datepicker.init(startPicker, startOptions);
 
     let stopOptions = {
-      onSelect: function(date) {
-        stop = new Date(date).getTime() -  (new Date(date).getTimezoneOffset())*60*1000 + stopTime;
+      onSelect: function (date) {
+        stop =
+          new Date(date).getTime() -
+          new Date(date).getTimezoneOffset() * 60 * 1000 +
+          stopTime;
       },
     };
     var stopPicker = document.querySelectorAll(".stopPicker");
     M.Datepicker.init(stopPicker, stopOptions);
 
     let startOptionsTime = {
-      onSelect: function(hour, minute) {
-        console.log(hour, minute)
-        start = start - startTime
-        startTime = hour*60*60*1000 + minute*60*1000
-        start = start + startTime
+      onSelect: function (hour, minute) {
+        console.log(hour, minute);
+        start = start - startTime;
+        startTime = hour * 60 * 60 * 1000 + minute * 60 * 1000;
+        start = start + startTime;
       },
-      twelveHour: false
+      twelveHour: false,
     };
-    var startTimePicker = document.querySelectorAll('.startTimePicker');
+    var startTimePicker = document.querySelectorAll(".startTimePicker");
     M.Timepicker.init(startTimePicker, startOptionsTime);
 
     let stopOptionsTime = {
-      onSelect: function(hour, minute) {
-        stop = stop - stopTime
-        stopTime = hour*60*60*1000 + minute*60*1000
-        stop = stop + stopTime
+      onSelect: function (hour, minute) {
+        stop = stop - stopTime;
+        stopTime = hour * 60 * 60 * 1000 + minute * 60 * 1000;
+        stop = stop + stopTime;
       },
-      twelveHour: false
+      twelveHour: false,
     };
-    var stopTimePicker = document.querySelectorAll('.stopTimePicker');
+    var stopTimePicker = document.querySelectorAll(".stopTimePicker");
     M.Timepicker.init(stopTimePicker, stopOptionsTime);
-
 
     const { user } = this.props.auth;
     let context = this;
     ws = new WebSocket("ws://localhost:5000/?key=" + user.apiKey);
 
     //request historical
-    ws.onopen = function() {
+    ws.onopen = function () {
       let params = {
         start: start,
         stop: stop,
@@ -133,7 +136,7 @@ class Dashboard extends Component {
     };
 
     //get live and historical
-    ws.onmessage = function(evt) {
+    ws.onmessage = function (evt) {
       let data = JSON.parse(evt.data);
 
       if (data.historicalData) {
@@ -150,7 +153,8 @@ class Dashboard extends Component {
           for (let j = savedIndex; j < data.historicalData.length; j++) {
             if (
               data.historicalData[j].timestamp >
-              start + (i + 1) * binDuration || start + (i + 1) * binDuration < data.historicalData[0].timestamp
+                start + (i + 1) * binDuration ||
+              start + (i + 1) * binDuration < data.historicalData[0].timestamp
             ) {
               ///cheaking if greater than startime + binduration*
               //console.log("break")
@@ -226,9 +230,12 @@ class Dashboard extends Component {
                   <h6 className="no-margin">Hi, {user.name.split(" ")[0]}</h6>
                   <h3 className="welcome-message">
                     You are logged into a full-stack{" "}
-                    <span style={{ fontFamily: "monospace" }}>MERN</span> app
+                    <span style={{ fontFamily: "monospace" }}>
+                      MERN CO₂ tracker
+                    </span>{" "}
+                    app
                   </h3>
-                  <p> Your API key: {user.apiKey}</p>
+                  <p className="grey-text text-darken-1 right"> Your API key: {user.apiKey}</p>
                 </div>
               </div>
             </div>
@@ -237,21 +244,19 @@ class Dashboard extends Component {
         <div className="row m20">
           <div className="col s12 m4">
             <div className="card-panel dashboard-card">
-              <h6 className="center-align m20">Current CO2 Level</h6>
+              <h6 className="center-align m20">Current CO₂ Level</h6>
               <CircularProgressbar
-                value={500}
+                value={this.state.liveSensor}
                 maxValue={5000}
-                text={"500 ppm"}
+                text={this.state.liveSensor}
                 styles={buildStyles({
-                  textSize: "16px",
+                  textSize: "10px",
                   // Colors
                   pathColor: `rgba(0, 255, 69, ${100 / 100})`,
                   textColor: "#113031",
                   trailColor: `rgba(0, 255, 69, ${30 / 100})`,
                 })}
               />
-              {/* //switch out the 500 ppm to say {this.state.liveSensor}s
-              <CircularProgressbar value={this.state.liveSensor} maxValue={5000} text={this.state.liveSensor} />; */}
               <p className="center-align m20">
                 Rating (Acceptable, Hazardous, etc)
               </p>
@@ -307,51 +312,16 @@ class Dashboard extends Component {
               </a>
             </div>
           </div>
-          {/* <div className="row">
-          <div className="col s12 m6 l4">
-            <form>
-              <div className="row">
-                <div className="input-field  col s4">
-                  <label for="startDay">Start day</label>
-                  <input id="startDay" type="text" className="startPicker" />
-                </div>
-                <div className="input-field  col s4">
-                  <label for="stopDay">Stop day</label>
-                  <input id="stopDay" type="text" className="stopPicker" />
-                </div>
-              </div>
-              <div className="row">
-                <div className="input-field col s4">
-                  <label for="startTime">Start time</label>
-                  <input id="startTime" type="text" className="startTimePicker" />
-                </div>
-                <div className="input-field col s4">
-                  <label for="stopTime">Stop time</label>
-                  <input id="stopTime" type="text" className="stopTimePicker" />
-                </div>
-              </div>
-            </form>
-          </div>
-          <div className="col s4">
-            <a
-              className="waves-effect waves-light btn"
-              id="getData"
-              onClick={this.getData}
-            >
-              Get Data
-            </a>
-          </div>
-        </div> */}
 
           <button
             style={{
               width: "150px",
               borderRadius: "3px",
               letterSpacing: "1.5px",
-              marginTop: "1rem",
+              marginBottom: "1rem",
             }}
             onClick={this.onLogoutClick}
-            className="btn btn-large waves-effect waves-light hoverable blue accent-3"
+            className="green-btn btn-large right"
           >
             Logout
           </button>
