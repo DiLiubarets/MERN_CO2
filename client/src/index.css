@@ -20,6 +20,9 @@ h6 {
   font-family: 'Poppins', Arial, Helvetica, sans-serif;
   font-weight: 600;
 }
+h3 {
+  font-size: 34px;
+}
 
 .green-btn {
     border-radius: 999px !important;
@@ -34,7 +37,7 @@ h6 {
 .green-btn:hover {
   background-color: #FFFF00 !important;
 }
-.row .col{
+.row .col-centered{
   float: none !important;
   margin-left: auto;
   margin-right: auto;
@@ -45,9 +48,21 @@ h6 {
 .mb20 {
   margin-bottom: 20px;
 }
+.mt20 {
+  margin-top: 20px;
+}
 .no-margin {
   margin: 0;
 }
 .no-padding {
   padding: 0;
+}
+.card.transparent {
+  background-color: rgba(255, 255, 255, 0);
+  border: none;
+  box-shadow: none;
+}
+
+.card .card-action {
+  border-top: none !important;
 }

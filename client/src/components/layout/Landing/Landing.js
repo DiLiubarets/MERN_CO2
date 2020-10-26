@@ -6,7 +6,7 @@ class Landing extends Component {
   render() {
     return (
       <div className="row">
-        <div className="col s12 m10 l8">
+        <div className="col s12 m10 l8 col-centered">
           <div className="card transparent center">
           <div className="card-content landing-style">
             <div className="card-title"><h2>Get to know the CO2 around you</h2></div>
