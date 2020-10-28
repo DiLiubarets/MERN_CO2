@@ -54,7 +54,7 @@ class Login extends Component {
 
     return (
       <div className="row m20">
-        <div className="col s10 m8 no-padding">
+        <div className="col s10 m8 no-padding col-centered">
           <Link to="/" className="btn-flat no-padding">
             <i className="material-icons left">keyboard_backspace</i>Back to
             home
@@ -92,10 +92,10 @@ class Login extends Component {
               <label htmlFor="password">Password</label>
               <span className="red-text">{errors.password}</span>
             </div>
-            <div className="col s12 no-padding">
+            <div className="col s12 mb20 no-padding">
               <button
                 type="submit"
-                className="btn-large green-btn"
+                className="btn-large green-btn mb20"
               >
                 Log In
               </button>

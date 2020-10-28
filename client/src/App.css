@@ -1,43 +1,12 @@
-body {
-  background: rgb(20, 221, 58);
-  background: -moz-linear-gradient(
-    229deg,
-    rgba(20, 221, 58, 1) 0%,
-    rgba(61, 230, 103, 1) 6%,
-    rgba(139, 248, 189, 1) 32%,
-    rgba(139, 248, 189, 1) 67%,
-    rgba(60, 230, 102, 1) 93%,
-    rgba(20, 221, 58, 1) 100%
-  );
-  background: -webkit-linear-gradient(
-    229deg,
-    rgba(20, 221, 58, 1) 0%,
-    rgba(61, 230, 103, 1) 6%,
-    rgba(139, 248, 189, 1) 32%,
-    rgba(139, 248, 189, 1) 67%,
-    rgba(60, 230, 102, 1) 93%,
-    rgba(20, 221, 58, 1) 100%
-  );
-  background: linear-gradient(
-    229deg,
-    rgba(20, 221, 58, 1) 0%,
-    rgba(61, 230, 103, 1) 6%,
-    rgba(139, 248, 189, 1) 32%,
-    rgba(139, 248, 189, 1) 67%,
-    rgba(60, 230, 102, 1) 93%,
-    rgba(20, 221, 58, 1) 100%
-  );
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  height: 100%;
-  margin: 0;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#14dd3a",endColorstr="#14dd3a",GradientType=1);
-}
 .container-style {
     margin-top: 1% !important;
+    margin-bottom: 5% !important;
     background-color: rgba(255, 255, 255, 0.3);
     border-radius: 40px 50px 40px 40px;
     padding: 0;
     min-height: 90vh;
+    -webkit-box-shadow: 3px 3px 40px 15px #ccc;  /*  Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+    -moz-box-shadow:    3px 3px 40px 15px #ccc;  /*  Firefox 3.5 - 3.6 */
+    box-shadow:         3px 3px 40px 15px #ccc;  /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
 }
 

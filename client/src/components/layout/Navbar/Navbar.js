@@ -22,6 +22,23 @@ class Navbar extends Component {
               alt="<MERN/> CO2 Tracker logo"
             />
           </Link>
+          <ul id="nav-mobile" class="right hide-on-med-and-down mr20">
+            <li>
+              <Link to="/login">Log In</Link>
+            </li>
+            <li>
+              <Link to="/register">Register</Link>
+            </li>
+            <li>
+              <Link to="/dashboard">Dashboard</Link>
+            </li>
+            <li>
+              <Link to="/settings">Settings</Link>
+            </li>
+            <li>
+              <Link to="/logout">Log Out</Link>
+            </li>
+          </ul>
         </div>
       </nav>
     );
