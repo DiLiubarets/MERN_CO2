@@ -23,13 +23,16 @@ var chartData = {
     datasets: [
       {
         label: "CO₂",
-        fill: false,
+        fill: "origin",
         data: arr,
-        borderWidth: 1,
-        borderColor: "green",
-        backgroundColor: "green",
-        hoverBorderWidth: 7,
-        hoverBorderColor: "red",
+        borderWidth: 5,
+        borderColor: "#0058FF",
+        backgroundColor: "rgb(179, 206, 239, 0.3)",
+        hoverBorderWidth: 5,
+        hoverBorderColor: "#0058FF",
+        lineTension: 0.1,
+        pointRadius: 0,
+        borderJoinStyle: "bevel",
       },
     ],
   },
@@ -40,15 +43,20 @@ var chartData = {
           display: false, //this will remove all the x-axis grid lines
         },
       ],
+      yAxes: [
+        {
+          display: false, //this will remove all the x-axis grid lines
+        },
+      ],
     },
     title: {
-      display: true,
+      display: false,
       text: "",
       fontSize: 25,
       fontColor: "gold",
     },
     legend: {
-      display: true,
+      display: false,
       position: "bottom",
       labels: {
         fontColor: "#000",
@@ -78,7 +86,7 @@ class Dashboard extends Component {
 
   componentDidMount() {
     let startOptions = {
-      onSelect: function (date) {
+      onSelect: function(date) {
         start =
           new Date(date).getTime() -
           new Date(date).getTimezoneOffset() * 60 * 1000 +
@@ -89,7 +97,7 @@ class Dashboard extends Component {
     M.Datepicker.init(startPicker, startOptions);
 
     let stopOptions = {
-      onSelect: function (date) {
+      onSelect: function(date) {
         stop =
           new Date(date).getTime() -
           new Date(date).getTimezoneOffset() * 60 * 1000 +
@@ -100,7 +108,7 @@ class Dashboard extends Component {
     M.Datepicker.init(stopPicker, stopOptions);
 
     let startOptionsTime = {
-      onSelect: function (hour, minute) {
+      onSelect: function(hour, minute) {
         console.log(hour, minute);
         start = start - startTime;
         startTime = hour * 60 * 60 * 1000 + minute * 60 * 1000;
@@ -112,7 +120,7 @@ class Dashboard extends Component {
     M.Timepicker.init(startTimePicker, startOptionsTime);
 
     let stopOptionsTime = {
-      onSelect: function (hour, minute) {
+      onSelect: function(hour, minute) {
         stop = stop - stopTime;
         stopTime = hour * 60 * 60 * 1000 + minute * 60 * 1000;
         stop = stop + stopTime;
@@ -127,7 +135,7 @@ class Dashboard extends Component {
     ws = new WebSocket("ws://localhost:5000/?key=" + user.apiKey);
 
     //request historical
-    ws.onopen = function () {
+    ws.onopen = function() {
       let params = {
         start: start,
         stop: stop,
@@ -136,7 +144,7 @@ class Dashboard extends Component {
     };
 
     //get live and historical
-    ws.onmessage = function (evt) {
+    ws.onmessage = function(evt) {
       let data = JSON.parse(evt.data);
 
       if (data.historicalData) {
@@ -213,9 +221,9 @@ class Dashboard extends Component {
 
     return (
       <div>
-        <div className="row m20">
-          <div className="col s12 m10 l8">
-            <div className="card horizontal transparent">
+        <div className="row m20 mb0">
+          <div className="col s8 m10 l8">
+            <div className="card horizontal transparent mb0">
               <div className="card-image">
                 <span
                   role="img"
@@ -227,105 +235,126 @@ class Dashboard extends Component {
               </div>
               <div className="card-stacked">
                 <div className="card-content">
-                  <h6 className="no-margin">Hi, {user.name.split(" ")[0]}</h6>
-                  <h3 className="welcome-message">
+                  <h6 className="mb0">Hi, {user.name.split(" ")[0]}</h6>
+                  <h3 className="welcome-message mt0">
                     You are logged into a full-stack{" "}
                     <span style={{ fontFamily: "monospace" }}>
                       MERN CO₂ tracker
                     </span>{" "}
                     app
                   </h3>
-                  <p className="grey-text text-darken-1 right"> Your API key: {user.apiKey}</p>
+                  <p className="grey-text text-darken-1 right">
+                    {" "}
+                    Your API key: {user.apiKey}
+                  </p>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div className="row m20">
-          <div className="col s12 m4">
-            <div className="card-panel dashboard-card">
-              <h6 className="center-align m20">Current CO₂ Level</h6>
-              <CircularProgressbar
-                value={this.state.liveSensor}
-                maxValue={5000}
-                text={this.state.liveSensor}
-                styles={buildStyles({
-                  textSize: "10px",
-                  // Colors
-                  pathColor: `rgba(0, 255, 69, ${100 / 100})`,
-                  textColor: "#113031",
-                  trailColor: `rgba(0, 255, 69, ${30 / 100})`,
-                })}
-              />
-              <p className="center-align m20">
-                Rating (Acceptable, Hazardous, etc)
-              </p>
+        <div className="section">
+          <div className="row m20">
+            <div className="col s12 m4">
+              <div className="card-panel dashboard-card">
+                <h6 className="center-align mb20">Current CO₂ Level</h6>
+                <CircularProgressbar
+                  value={this.state.liveSensor}
+                  maxValue={5000}
+                  text={this.state.liveSensor}
+                  styles={buildStyles({
+                    textSize: "10px",
+                    // Colors
+                    pathColor: `rgba(0, 255, 69, ${100 / 100})`,
+                    textColor: "#113031",
+                    trailColor: `rgba(0, 255, 69, ${30 / 100})`,
+                  })}
+                  className="center-align"
+                />
+                <p className="center-align mt20">
+                  Rating (Acceptable, Hazardous, etc)
+                </p>
+              </div>
+            </div>
+            <div className="col s3 m2 pr0">
+              <div className="card-panel chart-side">
+                <p className="chart-titles center-align"><b>HIGHEST POINT</b></p>
+                <h5 className="center-align">00</h5>
+                <p className="chart-titles center-align"><b>LOWEST POINT</b></p>
+                <h5 className="center-align">00</h5>
+                <p className="chart-titles center-align"><b>AVERAGE</b></p>
+                <h5 className="center-align">00</h5>
+              </div>
+            </div>
+            <div className="col s9 m6 pl0">
+              <div className="card-panel dashboard-card2">
+                <div className="ml20">
+                  <p><b>CO2 Levels Over Time</b></p>
+                  {" "}
+                  <Chart data={chartData} setChart={this.setChart} />
+                </div>
+                <form className="ml20">
+                    <div className="input-field dashboard-input col">
+                      <input
+                        id="startDay"
+                        type="text"
+                        className="startPicker"
+                      />
+                      <label for="startDay" className="picker pl0">
+                        First day
+                      </label>
+                    </div>
+                    <div className="input-field dashboard-input col">
+                      <input id="stopDay" type="text" className="stopPicker" />
+                      <label for="stopDay" className="picker pl0">
+                        Last day
+                      </label>
+                    </div>
+                    <div className="input-field col">
+                      <input
+                        id="startTime"
+                        type="text"
+                        className="startTimePicker"
+                      />
+                      <label for="startTime" className="picker pl0">
+                        Start time
+                      </label>
+                    </div>
+                    <div className="input-field col">
+                      <input
+                        id="stopTime"
+                        type="text"
+                        className="stopTimePicker"
+                      />
+                      <label for="stopTime" className="picker pl0">
+                        End time
+                      </label>
+                  </div>
+                </form>
+                <button
+                  className="green-btn btn-small ml30"
+                  id="getData"
+                  onClick={this.getData}
+                >
+                  Get Data
+                </button>
+                
+              </div>
             </div>
           </div>
-          <div className="col m8">
-            <div className="card-panel dashboard-card">
-              <Chart data={chartData} setChart={this.setChart} />
-              <form className="mt20">
-                <div className="row no-margin no-padding" >
-                  <div className="input-field dashboard-input col s4">
-                    <input id="startDay" type="date" className="startPicker" />
-                    <label for="startDay" className="picker mb20">
-                      First day
-                    </label>
-                  </div>
-                  <div className="input-field dashboard-input col s4">
-                    <input id="stopDay" type="date" className="stopPicker" />
-                    <label for="stopDay" className="picker mb20">
-                      Last day
-                    </label>
-                  </div>
-                </div>
-                <div className="row no-margin no-padding">
-                  <div className="input-field  col s4">
-                    <input
-                      id="startTime"
-                      type="time"
-                      className="startTimePicker"
-                    />
-                    <label for="startTime" className="picker">
-                      Start time
-                    </label>
-                  </div>
-                  <div className="input-field col s4">
-                    <input
-                      id="stopTime"
-                      type="time"
-                      className="stopTimePicker"
-                    />
-                    <label for="stopTime" className="picker">
-                      End time
-                    </label>
-                  </div>
-                </div>
-              </form>
-              <a
-                className="green-btn btn-small"
-                id="getData"
-                onClick={this.getData}
-              >
-                Get Data
-              </a>
-            </div>
-          </div>
-
-          <button
-            style={{
-              width: "150px",
-              borderRadius: "3px",
-              letterSpacing: "1.5px",
-              marginBottom: "1rem",
-            }}
-            onClick={this.onLogoutClick}
-            className="green-btn btn-large right"
-          >
-            Logout
-          </button>
         </div>
+
+        <button
+          style={{
+            width: "150px",
+            borderRadius: "3px",
+            letterSpacing: "1.5px",
+            marginBottom: "1rem",
+          }}
+          onClick={this.onLogoutClick}
+          className="green-btn btn-large right"
+        >
+          Logout
+        </button>
       </div>
     );
   }

@@ -54,7 +54,7 @@ class Register extends Component {
 
     return (
       <div className="row m20">
-        <div className="col s10 m8 no-padding">
+        <div className="col s10 m8 no-padding col-centered">
           <Link to="/" className="btn-flat no-padding">
             <i className="material-icons left">keyboard_backspace</i>Back to
             home
@@ -65,7 +65,8 @@ class Register extends Component {
           </p>
           <form noValidate onSubmit={this.onSubmit}>
             <div className="input-field col s12 no-padding">
-              <input
+            <label htmlFor="name" className="pl0">Name</label>
+            <input
                 onChange={this.onChange}
                 value={this.state.name}
                 error={errors.name}
@@ -120,10 +121,10 @@ class Register extends Component {
               <label htmlFor="password2">Confirm Password</label>
               <span className="red-text">{errors.password2}</span>
             </div>
-            <div className="col s12 no-padding">
+            <div className="col s12 mb20 no-padding">
               <button
                 type="submit"
-                className="btn-large green-btn"
+                className="btn-large green-btn mb20"
               >
                 Sign up
               </button>

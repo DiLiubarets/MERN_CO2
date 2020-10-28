@@ -3,35 +3,66 @@
 }
 .dashboard-card {
   border-radius: 30px !important;
+  padding-left: 10px !important;
   box-shadow: none !important;
+  -webkit-box-shadow: 0px 0px 20px 1px #ccc !important; /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+  -moz-box-shadow: 0px 0px 20px 1px #ccc !important; /* Firefox 3.5 - 3.6 */
+  box-shadow: 0px 0px 20px 1px #ccc !important; /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
+}
+.dashboard-card2 {
+  border-radius: 0px 30px 30px 0px !important;
+  padding-left: 10px !important;
+  -webkit-box-shadow: 0px 0px 20px 1px #ccc !important; /*  Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+  -moz-box-shadow: 0px 0px 20px 1px #ccc !important; /*  Firefox 3.5 - 3.6 */
+  box-shadow: 0px 0px 20px 1px #ccc !important; /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
+  margin-left: -20px !important;
+  z-index: 0;
 }
 .picker {
-  font-size: 14px !important;
+  font-size: 12px !important;
   font-weight: 600;
   color: #113031 !important;
   padding-left: 2em;
   text-decoration: none !important;
+  line-height: 0;
 }
-input:not([type]),
-input[type="time"]:not(.browser-default),
-input[type="date"]:not(.browser-default),
-input[type="datetime"]:not(.browser-default),
-input[type="datetime-local"]:not(.browser-default),
-textarea.materialize-textarea {
-  /* border: none !important; */
+input#startTime {
+  height: 1rem !important;
 }
-
+input#stopTime {
+    height: 1rem !important;
+  }
+  input#startDay {
+    height: 1rem !important;
+  }
+  input#stopDay {
+    height: 1rem !important;
+  }
 .picker__date-display {
-  background-color:#69f0ae;
+  background-color: #69f0ae;
 }
 .picker__weekday-display {
-  background-color:#69f0ae;
+  background-color: #69f0ae;
 }
-/* .picker__day--selected, .picker__day--selected:hover, .picker--focused .picker__day--selected {
-  background-color:blue;
-} */
-
-.picker__date-display { background-color: #69f0ae; }
+.picker__date-display {
+  background-color: #69f0ae;
+}
 .datepicker-date-display {
-  background-color: #69f0ae;;
- }
+  background-color: #69f0ae;
+}
+.card-panel {
+  height: 510px;
+}
+.chart-side {
+  border-radius: 30px 0 30px 30px !important;
+  background-color: #113031 !important;
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+  color: white;
+  z-index: 1;
+  position: relative;
+}
+.chart-titles {
+  font-size: 10px;
+  padding: 10px 0 10px 0;
+}
