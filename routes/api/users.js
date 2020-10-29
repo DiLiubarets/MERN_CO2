@@ -4,6 +4,8 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const keys = require("../../config/keys");
 const passport = require("passport");
+const sensor = require("./sensor")
+
 
 // Load input validation
 const validateRegisterInput = require("../../validation/register");
@@ -25,18 +27,16 @@ router.post("/register", (req, res) => {
     return res.status(400).json(errors);
   }
 
-  User.findOne({ email: req.body.email }).then(user => {
+  User.findOne({ email: req.body.email }).then((user) => {
     if (user) {
       return res.status(400).json({ email: "Email already exists" });
     } else {
-      const apiKey = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
-
+      const apiKey = GenerateAPIkey();
       const newUser = new User({
         name: req.body.name,
         email: req.body.email,
         password: req.body.password,
-        apiKey: apiKey
-        
+        apiKey: apiKey,
       });
 
       // Hash password before saving in database
@@ -46,13 +46,14 @@ router.post("/register", (req, res) => {
           newUser.password = hash;
           newUser
             .save()
-            .then(user => res.json(user))
-            .catch(err => console.log(err));
+            .then((user) => res.json(user))
+            .catch((err) => console.log(err));
         });
       });
     }
   });
 });
+
 
 // @route POST api/users/login
 // @desc Login user and return JWT token
@@ -71,34 +72,35 @@ router.post("/login", (req, res) => {
   const password = req.body.password;
 
   // Find user by email
-  User.findOne({ email }).then(user => {
+  User.findOne({ email }).then((user) => {
     // Check if user exists
     if (!user) {
       return res.status(404).json({ emailnotfound: "Email not found" });
     }
 
     // Check password
-    bcrypt.compare(password, user.password).then(isMatch => {
+    bcrypt.compare(password, user.password).then((isMatch) => {
       if (isMatch) {
         // User matched
         // Create JWT Payload
         const payload = {
           id: user.id,
           name: user.name,
-          apiKey: user.apiKey
+          apiKey: user.apiKey,
+          userEmail: user.email,
         };
-
+        // console.log(payload)
         // Sign token
         jwt.sign(
           payload,
           keys.secretOrKey,
           {
-            expiresIn: 31556926 // 1 year in seconds
+            expiresIn: 31556926, // 1 year in seconds
           },
           (err, token) => {
             res.json({
               success: true,
-              token: "Bearer " + token
+              token: "Bearer " + token,
             });
           }
         );
@@ -111,4 +113,34 @@ router.post("/login", (req, res) => {
   });
 });
 
-module.exports = router;
+
+router.post("/newKey", (req, res) => {
+  // Form validation
+  const currentKey = req.body.apiKey
+  const newKey = GenerateAPIkey()
+  User.updateOne(
+    { apiKey: currentKey },
+    { apiKey: newKey },
+    function (err, docs) {
+      if (err) {
+        console.log(err);
+        res.json(err)
+      } else {
+        let socket = sensor.socketGetter(currentKey)
+        sensor.socketCleaner(currentKey)
+        sensor.socketSetter(newKey, socket)
+        res.json(newKey)
+      }
+    }
+  );
+
+});
+
+function GenerateAPIkey() {
+  return (
+    Math.random().toString(36).substring(2, 15) +
+    Math.random().toString(36).substring(2, 15)
+  );
+}
+
+  module.exports = router;

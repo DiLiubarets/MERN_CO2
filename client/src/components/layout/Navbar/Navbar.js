@@ -9,7 +9,7 @@ import { logoutUser } from "../../../actions/authActions";
 class Navbar extends Component {
   
   render() {
-    console.log(this.props.auth.isAuthenticated)
+    //console.log(this.props.auth.isAuthenticated)
 
     return (
       <nav className="navbar-style">
@@ -26,7 +26,7 @@ class Navbar extends Component {
               width="150"
               height="75"
               className="d-inline-block align-top m-4"
-              alt="<MERN/> CO₂ Tracker logo"
+              alt="CO₂ Tracker logo"
             />
           </NavLink>
           <ul id="nav-mobile" class="right hide-on-med-and-down mr20">

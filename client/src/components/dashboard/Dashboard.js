@@ -225,28 +225,11 @@ class Dashboard extends Component {
           <div className="col s8 m10 l8">
             <div className="card horizontal transparent mb0">
               <div className="card-image">
-                <span
-                  role="img"
-                  style={{ fontSize: "100px" }}
-                  aria-label="Wave Emoji"
-                >
-                  &#128075;
-                </span>
+
               </div>
               <div className="card-stacked">
                 <div className="card-content">
-                  <h6 className="mb0">Hi, {user.name.split(" ")[0]}</h6>
-                  <h3 className="welcome-message mt0">
-                    You are logged into a full-stack{" "}
-                    <span style={{ fontFamily: "monospace" }}>
-                      MERN CO₂ tracker
-                    </span>{" "}
-                    app
-                  </h3>
-                  <p className="grey-text text-darken-1 right">
-                    {" "}
-                    Your API key: {user.apiKey}
-                  </p>
+                  <h6 className="mb0">Your dashboard</h6>
                 </div>
               </div>
             </div>
