@@ -14,10 +14,12 @@ const ProductDisplay = ({ handleClick }) => (
         src="https://i.imgur.com/EHyR2nP.png"
         alt=""
       />
-      <div style={{
-              marginBottom: "2rem",
-            }}
-            className="description">
+      <div
+        style={{
+          marginBottom: "2rem",
+        }}
+        className="description"
+      >
         <h3>CO₂ tracker device </h3>
         <h5>$20</h5>
       </div>

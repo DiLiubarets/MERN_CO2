@@ -288,7 +288,7 @@ class Dashboard extends Component {
             <div className="col s9 m6 pl0">
               <div className="card-panel dashboard-card2">
                 <div className="ml20 mb20">
-                  <p><b>CO2 Levels Over Time</b></p>
+                  <p><b>CO₂ Levels Over Time</b></p>
                   {" "}
                   <Chart data={chartData} setChart={this.setChart} />
                 </div>

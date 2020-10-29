@@ -4,7 +4,7 @@ import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import "./Landing.css";
 import Stripe from "../../Stripe/Stripe";
-import Checkout from "../../Stripe/Checkout";
+
 class Landing extends Component {
   render() {
     const promise = loadStripe(
@@ -21,7 +21,7 @@ class Landing extends Component {
                 </div>
                 <p>
                   Our application allows users to understand the quality of the
-                  air around them through the power of the IoT. See what CO2
+                  air around them through the power of the IoT. See what CO₂
                   levels are right now, in the past, and compare your stored
                   data over time to make informed decisions for your needs.
                 </p>
@@ -41,7 +41,6 @@ class Landing extends Component {
             <div className="col s12 m10 l8 col-centered center-align">
               <h6 class="center-align">Money</h6>
               <Elements stripe={promise}>
-                <Checkout />
                 <Stripe />
               </Elements>
             </div>
