@@ -343,19 +343,6 @@ class Dashboard extends Component {
             </div>
           </div>
         </div>
-{/* 
-        <button
-          style={{
-            width: "150px",
-            borderRadius: "3px",
-            letterSpacing: "1.5px",
-            marginBottom: "1rem",
-          }}
-          onClick={this.onLogoutClick}
-          className="green-btn btn-large right"
-        >
-          Logout
-        </button> */}
       </div>
     );
   }

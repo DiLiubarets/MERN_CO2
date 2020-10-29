@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
 // import { connect } from "react-redux";
 // import { logoutUser } from "../../actions/authActions";
 // import Chart from "../../components/chart/Chart";
