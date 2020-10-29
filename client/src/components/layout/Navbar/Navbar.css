@@ -6,27 +6,17 @@
     padding: 20px;
     padding-left: 30px;
 }
-nav ul li {
+nav ul a {
     padding: 0 20px 0 20px !important;
+    opacity: 0.75;
+    background-color: #113031 !important;
 }
 nav ul a:hover {
-    background-color: #fff !important;
-    border-radius: 90px 90px 0 0;
-    height: 100px;
-    color: #113031;
+    opacity: 1;
+    color: #00ff45 !important;
+    background-color: #113031;
 }
 nav ul a:active {
-    background-color: #fff !important;
-    border-radius: 90px 90px 0 0;
-    height: 100px;
-    color: #113031;
-}
-nav ul a:focus {
-    background-color: #fff !important;
-    border-radius: 90px 90px 0 0;
-    height: 100px;
-    color: #113031;
-}
-nav ul a {
-    transition: none !important;
+    opacity: 1;
+    color: #00ff45 !important;
 }

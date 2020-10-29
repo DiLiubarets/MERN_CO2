@@ -287,12 +287,13 @@ class Dashboard extends Component {
             </div>
             <div className="col s9 m6 pl0">
               <div className="card-panel dashboard-card2">
-                <div className="ml20">
+                <div className="ml20 mb20">
                   <p><b>CO2 Levels Over Time</b></p>
                   {" "}
                   <Chart data={chartData} setChart={this.setChart} />
                 </div>
                 <form className="ml20">
+                  <p></p>
                     <div className="input-field dashboard-input col">
                       <input
                         id="startDay"
@@ -342,7 +343,7 @@ class Dashboard extends Component {
             </div>
           </div>
         </div>
-
+{/* 
         <button
           style={{
             width: "150px",
@@ -354,7 +355,7 @@ class Dashboard extends Component {
           className="green-btn btn-large right"
         >
           Logout
-        </button>
+        </button> */}
       </div>
     );
   }

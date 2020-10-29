@@ -1,13 +1,14 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from 'react-router-dom';
 import "./Navbar.css";
+import LogOut from "../../auth/Logout";
 
 class Navbar extends Component {
   render() {
     return (
       <nav className="navbar-style">
-        <div class="nav-wrapper">
-          <Link
+        <div class="nav-wrapper" >
+          <NavLink
             to="/"
             style={{
               fontFamily: "monospace",
@@ -21,22 +22,22 @@ class Navbar extends Component {
               className="d-inline-block align-top m-4"
               alt="<MERN/> CO2 Tracker logo"
             />
-          </Link>
+          </NavLink>
           <ul id="nav-mobile" class="right hide-on-med-and-down mr20">
             <li>
-              <Link to="/login">Log In</Link>
+              <NavLink to="/login">Log In</NavLink>
             </li>
             <li>
-              <Link to="/register">Register</Link>
+              <NavLink to="/register">Register</NavLink>
             </li>
             <li>
-              <Link to="/dashboard">Dashboard</Link>
+              <NavLink to="/dashboard">Dashboard</NavLink>
             </li>
             <li>
-              <Link to="/settings">Settings</Link>
+              <NavLink to="/settings">Settings</NavLink>
             </li>
             <li>
-              <Link to="/logout">Log Out</Link>
+              <LogOut />
             </li>
           </ul>
         </div>
