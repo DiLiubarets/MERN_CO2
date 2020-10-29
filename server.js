@@ -3,7 +3,11 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const passport = require("passport");
 const ws = require('ws');
-const stripe = require('stripe')('sk_test_51HfzDZHwLtaB4yxIiU5L176FNtYzGhDJvkDqC8xEggfIO9VsnTOVvsWBljeAsZuZVSbM02zowGYAxxK6ZCdlG76q00gxvuz6ym');
+
+
+// DB Config
+const dbCred = require("./config/keys");
+const stripe = require('stripe')(dbCred.stripe);
 
 const users = require("./routes/api/users");
 const sensor = require("./routes/api/sensor")
@@ -48,8 +52,6 @@ app.use(
 );
 app.use(bodyParser.json());
 
-// DB Config
-const dbCred = require("./config/keys");
 
 // Connect to MongoDB
 mongoose
