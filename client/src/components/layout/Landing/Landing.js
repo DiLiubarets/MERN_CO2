@@ -4,6 +4,7 @@ import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import "./Landing.css";
 import Stripe from "../../Stripe/Stripe";
+import AboutProject from "../../about/AboutProject"
 
 class Landing extends Component {
   render() {
@@ -44,6 +45,7 @@ class Landing extends Component {
                 <Stripe />
               </Elements>
             </div>
+            <AboutProject/>
           </div>
         </div>
       </div>
