@@ -243,10 +243,6 @@ class Dashboard extends Component {
                     </span>{" "}
                     app
                   </h3>
-                  <p className="grey-text text-darken-1 right">
-                    {" "}
-                    Your API key: {user.apiKey}
-                  </p>
                 </div>
               </div>
             </div>

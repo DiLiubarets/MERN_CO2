@@ -8,6 +8,7 @@ const passport = require("passport");
 // Load input validation
 const validateRegisterInput = require("../../validation/register");
 const validateLoginInput = require("../../validation/login");
+const validateDeleteInput = require("../../validation/delete");
 
 // Load User model
 const User = require("../../models/User");
@@ -25,18 +26,19 @@ router.post("/register", (req, res) => {
     return res.status(400).json(errors);
   }
 
-  User.findOne({ email: req.body.email }).then(user => {
+  User.findOne({ email: req.body.email }).then((user) => {
     if (user) {
       return res.status(400).json({ email: "Email already exists" });
     } else {
-      const apiKey = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+      const apiKey =
+        Math.random().toString(36).substring(2, 15) +
+        Math.random().toString(36).substring(2, 15);
 
       const newUser = new User({
         name: req.body.name,
         email: req.body.email,
         password: req.body.password,
-        apiKey: apiKey
-        
+        apiKey: apiKey,
       });
 
       // Hash password before saving in database
@@ -46,8 +48,8 @@ router.post("/register", (req, res) => {
           newUser.password = hash;
           newUser
             .save()
-            .then(user => res.json(user))
-            .catch(err => console.log(err));
+            .then((user) => res.json(user))
+            .catch((err) => console.log(err));
         });
       });
     }
@@ -71,21 +73,21 @@ router.post("/login", (req, res) => {
   const password = req.body.password;
 
   // Find user by email
-  User.findOne({ email }).then(user => {
+  User.findOne({ email }).then((user) => {
     // Check if user exists
     if (!user) {
       return res.status(404).json({ emailnotfound: "Email not found" });
     }
 
     // Check password
-    bcrypt.compare(password, user.password).then(isMatch => {
+    bcrypt.compare(password, user.password).then((isMatch) => {
       if (isMatch) {
         // User matched
         // Create JWT Payload
         const payload = {
           id: user.id,
           name: user.name,
-          apiKey: user.apiKey
+          apiKey: user.apiKey,
         };
 
         // Sign token
@@ -93,12 +95,12 @@ router.post("/login", (req, res) => {
           payload,
           keys.secretOrKey,
           {
-            expiresIn: 31556926 // 1 year in seconds
+            expiresIn: 31556926, // 1 year in seconds
           },
           (err, token) => {
             res.json({
               success: true,
-              token: "Bearer " + token
+              token: "Bearer " + token,
             });
           }
         );
@@ -111,4 +113,39 @@ router.post("/login", (req, res) => {
   });
 });
 
+router.post("/delete", (req, res) => {
+  // Form validation
+  console.log("route is running");
+  const { errors, isValid } = validateDeleteInput(req.body);
+  // Check validation
+  if (!isValid) {
+    return res.status(400).json(errors);
+  }
+  console.log("route is running 2");
+  //Checking if user exists
+  User.findOne({ email: req.body.email }).then((user) => {
+    if (!user) {
+      return res
+        .status(400)
+        .json({ email: "You can't delete a user that doesn't exist" });
+    }
+    // Check password
+    bcrypt.compare(req.body.password, user.password).then((isMatch) => {
+      if (isMatch) {
+        // User matched
+        console.log("user matched");
+        User.deleteOne({email: user.email}, (err) => {
+          if (err) {
+            console.log(err);
+          }
+        });
+        res.send("working");
+      } else {
+        return res
+          .status(400)
+          .json({ passwordincorrect: "Password incorrect" });
+      }
+    });
+  });
+});
 module.exports = router;
