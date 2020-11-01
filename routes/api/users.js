@@ -4,8 +4,6 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const keys = require("../../config/keys");
 const passport = require("passport");
-const sensor = require("./sensor")
-
 
 // Load input validation
 const validateRegisterInput = require("../../validation/register");
@@ -15,6 +13,9 @@ const validateDeleteInput = require("../../validation/delete");
 // Load User model
 const User = require("../../models/User");
 
+// @route POST api/users/register
+// @desc Register user
+// @access Public
 router.post("/register", (req, res) => {
   // Form validation
 
@@ -29,12 +30,9 @@ router.post("/register", (req, res) => {
     if (user) {
       return res.status(400).json({ email: "Email already exists" });
     } else {
-
-      const apiKey = GenerateAPIkey();
       const apiKey =
         Math.random().toString(36).substring(2, 15) +
         Math.random().toString(36).substring(2, 15);
-
 
       const newUser = new User({
         name: req.body.name,
@@ -58,7 +56,9 @@ router.post("/register", (req, res) => {
   });
 });
 
-
+// @route POST api/users/login
+// @desc Login user and return JWT token
+// @access Public
 router.post("/login", (req, res) => {
   // Form validation
 
@@ -88,9 +88,8 @@ router.post("/login", (req, res) => {
           id: user.id,
           name: user.name,
           apiKey: user.apiKey,
-          userEmail: user.email,
         };
-        // console.log(payload)
+
         // Sign token
         jwt.sign(
           payload,
@@ -113,36 +112,6 @@ router.post("/login", (req, res) => {
     });
   });
 });
-
-router.post("/newKey", (req, res) => {
-  // Form validation
-  const currentKey = req.body.apiKey
-  const newKey = GenerateAPIkey()
-  User.updateOne(
-    { apiKey: currentKey },
-    { apiKey: newKey },
-    function (err, docs) {
-      if (err) {
-        console.log(err);
-        res.json(err)
-      } else {
-        let socket = sensor.socketGetter(currentKey)
-        sensor.socketCleaner(currentKey)
-        sensor.socketSetter(newKey, socket)
-        res.json(newKey)
-      }
-    }
-  );
-});
-
-function GenerateAPIkey() {
-  return (
-    Math.random().toString(36).substring(2, 15) +
-    Math.random().toString(36).substring(2, 15)
-  );
-}
-
-  module.exports = router;
 
 router.post("/delete", (req, res) => {
   // Form validation
