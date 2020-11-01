@@ -4,7 +4,6 @@ const bodyParser = require("body-parser");
 const passport = require("passport");
 const ws = require('ws');
 
-
 // DB Config
 const dbCred = require("./config/keys");
 const stripe = require('stripe')(dbCred.stripe);
@@ -26,9 +25,9 @@ app.post('/create-session', async (req, res) => {
           currency: 'usd',
           product_data: {
             name: 'Stubborn Attachments',
-            images: ['https://i.imgur.com/EHyR2nP.png'],
+            images: [""],
           },
-          unit_amount: 2000,
+          unit_amount: 39900,
         },
         quantity: 1,
       },
