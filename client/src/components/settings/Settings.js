@@ -5,12 +5,6 @@ import axios from "axios";
 import { logoutUser } from "../../actions/authActions";
 
 let context;
-// import Chart from "../../components/chart/Chart";
-// import M from "materialize-css";
-// import "./Dashboard.css";
-// import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
-// import "react-circular-progressbar/dist/styles.css";
-
 class Settings extends Component {
   constructor(props) {
     super(props);
@@ -36,6 +30,55 @@ class Settings extends Component {
         console.log(error);
       });
   }
+import { logoutUser, deleteUser } from "../../actions/authActions";
+import classnames from "classnames";
+
+class Settings extends Component {
+  constructor() {
+    super();
+    this.state = {
+      email: "",
+      password: "",
+      errors: {},
+    };
+  }
+
+  componentDidMount() {
+    console.log("componentDidMount is working");
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.auth.isAuthenticated) {
+      console.log("componentWillReceiveProps is working");
+    }
+
+    if (nextProps.errors) {
+      this.setState({
+        errors: nextProps.errors,
+      });
+    }
+  }
+
+  onChange = (e) => {
+    this.setState({ [e.target.id]: e.target.value });
+  };
+
+  onSubmit = (e) => {
+    e.preventDefault();
+
+    const userData = {
+      email: this.state.email,
+      password: this.state.password,
+    };
+    console.log(userData);
+
+    this.props.deleteUser(userData);
+    this.props.logoutUser();
+  };
+
+  render() {
+    const { user } = this.props.auth;
+    const { errors } = this.state;
 
   render() {
     return (
@@ -58,6 +101,63 @@ class Settings extends Component {
                 </div>
               </div>
             </div>
+        <div className="row m20">
+          <div className="col s10 m8 no-padding col-centered">
+            <h4>Account Settings</h4>
+          </div>
+        </div>
+        <div className="row m20">
+          <div className="col s10 m8 no-padding col-centered">
+            <h6>API Credentials</h6>
+            <p>Copy and Paste from Below</p>
+            <input
+              disabled
+              value={user.apiKey}
+              id="disabled"
+              type="text"
+              class="validate"
+            />
+          </div>
+        </div>
+        <div className="row m20">
+          <div className="col s10 m8 no-padding col-centered">
+            <h6>Account Management</h6>
+            <p>Delete your account</p>
+            <form noValidate onSubmit={this.onSubmit}>
+              <div className="input-field col s12 no-padding">
+                <input
+                  onChange={this.onChange}
+                  value={this.state.email}
+                  error={errors.email}
+                  id="email"
+                  type="email"
+                  className={classnames("", {
+                    invalid: errors.email,
+                  })}
+                />
+                <label htmlFor="email">Email</label>
+                <span className="red-text">{errors.email}</span>
+              </div>
+              <div className="input-field col s12 no-padding">
+                <input
+                  onChange={this.onChange}
+                  value={this.state.password}
+                  error={errors.password}
+                  id="password"
+                  type="password"
+                  className={classnames("", {
+                    invalid: errors.password,
+                  })}
+                />
+                <label htmlFor="password">Password</label>
+                <span className="red-text">{errors.password}</span>
+              </div>
+              <div className="col s12 mb20 no-padding">
+                <button type="submit" className="btn-large green-btn mb20">
+                  Delete Account
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       </div>
@@ -66,6 +166,7 @@ class Settings extends Component {
 }
 
 Settings.propTypes = {
+  deleteUser: PropTypes.func.isRequired,
   logoutUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
 };
@@ -75,3 +176,4 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, { logoutUser })(Settings);
+export default connect(mapStateToProps, { deleteUser, logoutUser })(Settings);

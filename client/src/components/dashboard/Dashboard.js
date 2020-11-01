@@ -254,7 +254,17 @@ class Dashboard extends Component {
               <div className="card-image"></div>
               <div className="card-stacked">
                 <div className="card-content">
+
                   <h6 className="mb0">Your dashboard</h6>
+
+                  <h6 className="mb0">Hi, {user.name.split(" ")[0]}</h6>
+                  <h3 className="welcome-message mt0">
+                    You are logged into a full-stack{" "}
+                    <span style={{ fontFamily: "monospace" }}>
+                      MERN CO₂ tracker
+                    </span>{" "}
+                    app
+                  </h3>
                 </div>
               </div>
             </div>

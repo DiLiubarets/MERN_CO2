@@ -10,13 +10,11 @@ const sensor = require("./sensor")
 // Load input validation
 const validateRegisterInput = require("../../validation/register");
 const validateLoginInput = require("../../validation/login");
+const validateDeleteInput = require("../../validation/delete");
 
 // Load User model
 const User = require("../../models/User");
 
-// @route POST api/users/register
-// @desc Register user
-// @access Public
 router.post("/register", (req, res) => {
   // Form validation
 
@@ -31,7 +29,13 @@ router.post("/register", (req, res) => {
     if (user) {
       return res.status(400).json({ email: "Email already exists" });
     } else {
+
       const apiKey = GenerateAPIkey();
+      const apiKey =
+        Math.random().toString(36).substring(2, 15) +
+        Math.random().toString(36).substring(2, 15);
+
+
       const newUser = new User({
         name: req.body.name,
         email: req.body.email,
@@ -55,9 +59,6 @@ router.post("/register", (req, res) => {
 });
 
 
-// @route POST api/users/login
-// @desc Login user and return JWT token
-// @access Public
 router.post("/login", (req, res) => {
   // Form validation
 
@@ -113,7 +114,6 @@ router.post("/login", (req, res) => {
   });
 });
 
-
 router.post("/newKey", (req, res) => {
   // Form validation
   const currentKey = req.body.apiKey
@@ -133,7 +133,6 @@ router.post("/newKey", (req, res) => {
       }
     }
   );
-
 });
 
 function GenerateAPIkey() {
@@ -144,3 +143,40 @@ function GenerateAPIkey() {
 }
 
   module.exports = router;
+
+router.post("/delete", (req, res) => {
+  // Form validation
+  console.log("route is running");
+  const { errors, isValid } = validateDeleteInput(req.body);
+  // Check validation
+  if (!isValid) {
+    return res.status(400).json(errors);
+  }
+  console.log("route is running 2");
+  //Checking if user exists
+  User.findOne({ email: req.body.email }).then((user) => {
+    if (!user) {
+      return res
+        .status(400)
+        .json({ email: "You can't delete a user that doesn't exist" });
+    }
+    // Check password
+    bcrypt.compare(req.body.password, user.password).then((isMatch) => {
+      if (isMatch) {
+        // User matched
+        console.log("user matched");
+        User.deleteOne({email: user.email}, (err) => {
+          if (err) {
+            console.log(err);
+          }
+        });
+        res.send("working");
+      } else {
+        return res
+          .status(400)
+          .json({ passwordincorrect: "Password incorrect" });
+      }
+    });
+  });
+});
+module.exports = router;
