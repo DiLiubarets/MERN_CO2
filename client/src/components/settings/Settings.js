@@ -1,6 +1,35 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import axios from "axios";
+import { logoutUser } from "../../actions/authActions";
+
+let context;
+class Settings extends Component {
+  constructor(props) {
+    super(props);
+    context = this;
+    this.state = {
+      user: this.props.auth.user,
+    };
+  }
+
+  requestNewKey() {
+    axios
+      .post("/api/users/newKey", {
+        apiKey: context.props.auth.user.apiKey,
+      })
+      .then(function(response) {
+        context.props.auth.user.apiKey = response.data;
+        context.setState({
+          user: context.props.auth.user,
+        });
+        //user.apiKey = response.data
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+  }
 import { logoutUser, deleteUser } from "../../actions/authActions";
 import classnames from "classnames";
 
@@ -51,8 +80,27 @@ class Settings extends Component {
     const { user } = this.props.auth;
     const { errors } = this.state;
 
+  render() {
     return (
       <div>
+        <div className="row m20 mb0">
+          <div className="col s8 m10 l8">
+            <div className="card horizontal transparent mb0">
+              <div className="card-stacked">
+                <div className="card-content">
+                  <h6 className="mb0">Your settings</h6>
+                  <h6>Your user name: {this.state.user.name}</h6>
+                  <h6>Your email: {this.state.user.userEmail}</h6>
+                  <h6>Your API key: {this.state.user.apiKey} </h6>
+                  <button
+                    className="green-btn btn-small ml30"
+                    onClick={this.requestNewKey}
+                  >
+                    Request new API key
+                  </button>
+                </div>
+              </div>
+            </div>
         <div className="row m20">
           <div className="col s10 m8 no-padding col-centered">
             <h4>Account Settings</h4>
@@ -127,4 +175,5 @@ const mapStateToProps = (state) => ({
   auth: state.auth,
 });
 
+export default connect(mapStateToProps, { logoutUser })(Settings);
 export default connect(mapStateToProps, { deleteUser, logoutUser })(Settings);
