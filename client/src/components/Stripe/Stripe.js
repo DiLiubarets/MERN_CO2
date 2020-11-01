@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import "./Stripe.css";
-import ImgCO2 from "../../images/CO2-tracker.png"
 
 // Make sure to call `loadStripe` outside of a component’s render to avoid
 // recreating the `Stripe` object on every render.
@@ -13,15 +12,13 @@ const ProductDisplay = ({ handleClick }) => (
   <section>
     <div className="product">
       <img
-        src={ImgCO2}
+        src="https://i.imgur.com/EHyR2nP.png"
         alt=""
       />
       <div
-        // style={{
-        //   marginBottom: "2rem",
-        //   width: "400px",
-        //   height: "300px"
-        // }}
+        style={{
+          marginBottom: "2rem",
+        }}
         className="description"
       >
         <h3>CO₂ tracker device </h3>
