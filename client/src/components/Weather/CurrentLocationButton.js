@@ -8,7 +8,8 @@ import {
 } from "../../redux/actions";
 
 const LocationButton = ({ setLocation, getWeatherData, setFetching }) => {
-  const handleClick = () => {
+  const handleClick = (e) => {
+    e.preventDefault();
     setFetching();
     getCurrentLocationData();
   };

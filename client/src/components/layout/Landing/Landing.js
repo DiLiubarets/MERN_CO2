@@ -36,11 +36,9 @@ class Landing extends Component {
                 </div>
               </div>
             </div>
-            <hr />
           </div>
           <div className="row">
             <div className="col s12 m10 l8 col-centered center-align">
-              <h6 class="center-align">Money</h6>
               <Elements stripe={promise}>
                 <Stripe />
               </Elements>
