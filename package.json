@@ -19,6 +19,7 @@
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
     "concurrently": "^4.0.1",
+    "create-react-class": "^15.7.0",
     "express": "^4.16.4",
     "is-empty": "^1.2.0",
     "jsonwebtoken": "^8.3.0",
@@ -26,6 +27,8 @@
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0",
     "react-circular-progressbar": "^2.0.3",
+    "react-open-weather": "^0.6.2",
+    "redux-persist": "^6.0.0",
     "stripe": "^8.117.0",
     "validator": "^10.9.0",
     "ws": "^7.3.1"
