@@ -1,7 +1,7 @@
 // export const apiKey = process.env.REACT_APP_OPEN_WEATHER_API_KEY
 
 const baseUrl = 'https://api.openweathermap.org/data/2.5/weather?';
-const apiKey = '';
+const apiKey = '7e882bb8ed2dcfe85cf3abf5390335b4';
 
 export const getWeatherData = (param1, param2, type) => {
     let apiUrl = type === 'coordinates' 
@@ -16,6 +16,7 @@ export const getWeatherData = (param1, param2, type) => {
         .then(dispatch(setFetchingFalse()))
     }
 }
+console.log(getWeatherData)
 
 export const setCurrentLocation = location => {
     return { type: `SET_LOCATION`, payload: location }

@@ -7,8 +7,9 @@ import M from "materialize-css";
 import "./Dashboard.css";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
-import CurrentLocationButton from '../Weather/CurrentLocationButton';
-import WeatherContainer from '../Weather/WeatherContainer'
+import CurrentLocationButton from "../Weather/CurrentLocationButton";
+import WeatherContainer from "../Weather/WeatherContainer";
+import Img from "../../images/logo4.png";
 
 let ws = null;
 var massPopChart;
@@ -230,7 +231,8 @@ class Dashboard extends Component {
     massPopChart = chart;
   }
 
-  getData() {
+  getData(e) {
+    e.preventDefault();
     let params = {
       start: start,
       stop: stop,
@@ -282,22 +284,14 @@ class Dashboard extends Component {
           <div className="col s8 m10 l8">
             <div className="card horizontal transparent mb0">
               <div className="card-image">
-                <span
-                  role="img"
-                  style={{ fontSize: "100px" }}
-                  aria-label="Wave Emoji"
-                >
-                  &#128075;
-                </span>
+                <img src={Img} alt="" />
               </div>
               <div className="card-stacked">
                 <div className="card-content">
                   <h6 className="mb0">Hi, {user.name.split(" ")[0]}</h6>
                   <h3 className="welcome-message mt0">
-                    You are logged into a full-stack{" "}
-                    <span style={{ fontFamily: "monospace" }}>
-                      MERN CO₂ tracker
-                    </span>{" "}
+                    You are logged into a{" "}
+                    <span style={{ fontFamily: "monospace" }}>CO₂ tracker</span>{" "}
                     app
                   </h3>
                 </div>
@@ -400,8 +394,9 @@ class Dashboard extends Component {
         <div className="row mrl20">
           <div className="col s12">
             <div className="card-panel dashboard-card weather">
-            <CurrentLocationButton />
-            {this.state.currentLocation !== null && this.state.weatherData !== null && <WeatherContainer />}
+              <CurrentLocationButton />
+              {this.state.currentLocation !== null &&
+                this.state.weatherData !== null && <WeatherContainer />}
             </div>
           </div>
         </div>
@@ -418,7 +413,7 @@ Dashboard.propTypes = {
 const mapStateToProps = (state) => ({
   auth: state.auth,
   currentLocation: state.location,
-  weatherData: state.weather
+  weatherData: state.weather,
 });
 
 export default connect(mapStateToProps, { logoutUser })(Dashboard);

@@ -57,7 +57,8 @@ const sendHistoricalData = function (apiKey, params) {
         if (err) {
           console.log(err);
         } else {
-          console.log(docs[0].sensorData)
+          //console.log(docs[0].sensorData)
+          //console.log(socketObject[apiKey])
           socketObject[apiKey].send(JSON.stringify({historicalData: docs[0].sensorData}))
         }
       }
