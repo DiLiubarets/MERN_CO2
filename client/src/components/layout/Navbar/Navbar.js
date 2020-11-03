@@ -22,7 +22,7 @@ class Navbar extends Component {
             className="brand-logo left"
           >
             <img
-              src="https://raw.githubusercontent.com/DiLiubarets/MERN_CO2/b8d129be9d8e77992727595f3560f45096729dc9/client/src/components/layout/Navbar/assets/logo.svg"
+              src="https://raw.githubusercontent.com/DiLiubarets/MERN_CO2/ee0324595ed9d947d9114bce20ccd05dccd47908/client/src/components/layout/Navbar/assets/logo.svg"
               width="150"
               height="75"
               className="d-inline-block align-top m-4"
