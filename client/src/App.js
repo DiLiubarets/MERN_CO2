@@ -14,6 +14,8 @@ import Login from "./components/auth/Login";
 import PrivateRoute from "./components/private-route/PrivateRoute";
 import Dashboard from "./components/dashboard/Dashboard";
 import Settings from "./components/settings/Settings";
+import Footer from "./components/layout/Footer/Footer";
+import DeviceInfo from "./components/DeviceInfo/DeviceInfo";
 
 import "./App.css";
 
@@ -39,21 +41,25 @@ if (localStorage.jwtToken) {
 class App extends Component {
   render() {
     return (
+      <div>
       <div className="container container-style">
-      <Provider store={store}>
-        <Router>
-          <div className="App">
-            <Navbar />
-            <Route exact path="/" component={Landing} />
-            <Route exact path="/register" component={Register} />
-            <Route exact path="/login" component={Login} />
-            <Switch>
-              <PrivateRoute exact path="/dashboard" component={Dashboard} />
-              <PrivateRoute exact path="/settings" component={Settings} />
-            </Switch>
-          </div>
-        </Router>
-      </Provider>
+        <Provider store={store}>
+          <Router>
+            <div className="App">
+              <Navbar />
+              <Route exact path="/" component={Landing} />
+              <Route exact path="/register" component={Register} />
+              <Route exact path="/login" component={Login} />
+              <Route exact path="/device-info" component={DeviceInfo} />
+              <Switch>
+                <PrivateRoute exact path="/dashboard" component={Dashboard} />
+                <PrivateRoute exact path="/settings" component={Settings} />
+              </Switch>
+            </div>
+          </Router>
+        </Provider>
+      </div>
+      <Footer />
       </div>
     );
   }

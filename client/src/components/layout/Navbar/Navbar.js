@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { NavLink } from 'react-router-dom';
+import { NavLink } from "react-router-dom";
 import "./Navbar.css";
 import LogOut from "../../auth/Logout";
 import PropTypes from "prop-types";
@@ -7,13 +7,12 @@ import { connect } from "react-redux";
 import { logoutUser } from "../../../actions/authActions";
 
 class Navbar extends Component {
-  
   render() {
-    console.log(this.props.auth.isAuthenticated)
+    console.log(this.props.auth.isAuthenticated);
 
     return (
       <nav className="navbar-style">
-        <div class="nav-wrapper" >
+        <div class="nav-wrapper">
           <NavLink
             to="/"
             style={{
@@ -30,36 +29,37 @@ class Navbar extends Component {
             />
           </NavLink>
           <ul id="nav-mobile" class="right hide-on-med-and-down mr20">
+              
+            {this.props.auth.isAuthenticated && (
+              <div>
+                <li>
+                <NavLink to="/device-info">Device Info</NavLink>
+              </li>
+                <li>
+                  <NavLink to="/dashboard">Dashboard</NavLink>
+                </li>
+                <li>
+                  <NavLink to="/settings">Settings</NavLink>
+                </li>
+                <li>
+                  <LogOut />
+                </li>
+              </div>
+            )}
 
-          {this.props.auth.isAuthenticated  &&
-        <div>
-        <li>
-        <NavLink to="/dashboard">Dashboard</NavLink>
-      </li>
-      <li>
-        <NavLink to="/settings">Settings</NavLink>
-      </li>
-      <li>
-        <LogOut />
-      </li>
-      </div>
-          }
-
-          {!this.props.auth.isAuthenticated && 
-          
-            <div>
-            <li>
-              <NavLink to="/login">Log In</NavLink>
-            </li>
-            <li>
-              <NavLink to="/register">Register</NavLink>
-            </li>
-            </div>
-
-          }
-
-
-            
+            {!this.props.auth.isAuthenticated && (
+              <div>
+                <li>
+                <NavLink to="/device-info">Device Info</NavLink>
+              </li>
+                <li>
+                  <NavLink to="/login">Log In</NavLink>
+                </li>
+                <li>
+                  <NavLink to="/register">Register</NavLink>
+                </li>
+              </div>
+            )}
           </ul>
         </div>
       </nav>
@@ -77,4 +77,3 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, { logoutUser })(Navbar);
-
