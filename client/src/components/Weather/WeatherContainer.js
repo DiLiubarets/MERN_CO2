@@ -6,9 +6,9 @@ const WeatherContainer = ({ fetching, weatherData }) => {
 
     const fetchingMessage = () => {
         return (
-            <div id="weather-data">
-                <p>Working on it!</p>
-                <p>This should only take a moment</p>
+            <div id="weather-data mb20">
+                <p className="center-align">Working on it!</p>
+                <p className="center-align">This should only take a moment</p>
             </div>
         )
     }

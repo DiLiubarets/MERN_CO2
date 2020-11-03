@@ -280,19 +280,17 @@ class Dashboard extends Component {
     return (
       <div>
         <div className="row m20 mb0">
-          <div className="col s8 m10 l8">
+          <div className="col s12 ml10">
             <div className="card horizontal transparent mb0">
-              <div className="card-image">
+              <div className="card-image mt20">
                 <img style={{ height: "100px" }}src="https://raw.githubusercontent.com/DiLiubarets/MERN_CO2/ee0324595ed9d947d9114bce20ccd05dccd47908/client/src/images/logo.svg" alt="CO2 Tracker Logo" />
               </div>
               <div className="card-stacked">
                 <div className="card-content">
                   <h6 className="mb0">Hi, {user.name.split(" ")[0]}</h6>
-                  <h3 className="welcome-message mt0">
-                    You are logged into a{" "}
-                    <span style={{ fontFamily: "monospace" }}>CO₂ tracker</span>{" "}
-                    app
-                  </h3>
+                  <h1 className="mt0" style={{ fontSize: "34px" }}>
+                    <span className="poppins-title">You are logged into a </span>CO₂ Tracker <span className="poppins-title">app</span>
+                  </h1>
                 </div>
               </div>
             </div>
@@ -301,7 +299,7 @@ class Dashboard extends Component {
         <div className="row mrl20">
           <div className="col s12 m4">
             <div className="card-panel dashboard-card">
-              <h6 className="center-align mb20">Current CO₂ Level</h6>
+              <h3 className="center-align mb20">Current CO₂ Level</h3>
               <CircularProgressbar
                 value={this.state.liveSensor}
                 maxValue={10000}
@@ -337,9 +335,9 @@ class Dashboard extends Component {
           <div className="col s9 m6 pl0">
             <div className="card-panel dashboard-card2">
               <div className="ml20 mb20">
-                <p>
+                <h3 className="mt0 center-align">
                   <b>CO₂ Levels Over Time</b>
-                </p>{" "}
+                </h3>{" "}
                 <Chart data={chartData} setChart={this.setChart} />
               </div>
               <form className="ml20">
@@ -392,7 +390,7 @@ class Dashboard extends Component {
         </div>
         <div className="row mrl20">
           <div className="col s12">
-            <div className="card-panel dashboard-card weather">
+            <div className="card-panel dashboard-card-weather">
               <CurrentLocationButton />
               {this.state.currentLocation !== null &&
                 this.state.weatherData !== null && <WeatherContainer />}
