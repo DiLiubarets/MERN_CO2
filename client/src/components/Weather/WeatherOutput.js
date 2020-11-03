@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
+import "./Weather.css";
 
 const WeatherOutput = ({ weatherData }) => {
   const {
@@ -21,146 +22,94 @@ const WeatherOutput = ({ weatherData }) => {
   return (
     <div id="weather-data">
       <div className="row">
-        <div className="col">
-          <span
-            className="icon-centered"
-            role="img"
-            style={{ fontSize: "100px" }}
-            aria-label="Globe Emoji (showing Americas)"
-          >
-            &#127758;
-          </span>
-          <p className="center-align" id="location">
-            {weatherData.name}, {weatherData.sys.country}
-            {option === "fahrenheit" ? `${temp} °F` : `${toCelsius(temp)} °C `}
-          </p>
-          <label>
-            °F
-            <input
-              type="radio"
-              value="f"
-              checked={option === "fahrenheit"}
-              onChange={switchToF}
-            ></input>
-          </label>{" "}
-          <label>
-            °C
-            <input
-              type="radio"
-              value="c"
-              checked={option === "celsius"}
-              onChange={switchToC}
-            ></input>
-          </label>
-        </div>
-        <div className="col">
-          <img className="icon-centered" src={iconUrl} alt="weather icon"></img>
-
-          <p className="center-align">
-            Conditions: {weatherData.weather[0].main} -{" "}
-            {weatherData.weather[0].description}
-          </p>
-        </div>
-        <div className="col">
-          <span
-            className="icon-centered"
-            role="img"
-            style={{ fontSize: "100px" }}
-            aria-label="Globe Emoji (showing Americas)"
-          >
-            &#127758;
-          </span>{" "}
-          <p className="center-align">
-            Temperature:{" "}
-            {option === "fahrenheit"
-              ? `${Math.round(temp)} °F`
-              : `${toCelsius(temp)} °C `}{" "}
-          </p>
-        </div>
-        <div className="col">
-          <span
-            className="icon-centered"
-            role="img"
-            style={{ fontSize: "100px" }}
-            aria-label="Globe Emoji (showing Americas)"
-          >
-            &#127758;
-          </span>{" "}
-          <p className="center-align">
-            Min temperature:{" "}
-            {option === "fahrenheit"
-              ? `${Math.round(temp_min)} °F`
-              : `${toCelsius(temp_min)} °C `}{" "}
-          </p>
-        </div>
-        <div className="col">
-          <span
-            className="icon-centered"
-            role="img"
-            style={{ fontSize: "100px" }}
-            aria-label="Globe Emoji (showing Americas)"
-          >
-            &#127758;
-          </span>{" "}
-          <p className="center-align">
-            Feels like:{" "}
-            {option === "fahrenheit"
-              ? `${Math.round(feels_like)} °F`
-              : `${toCelsius(feels_like)} °C `}
-          </p>
-        </div>
-      </div>
-
-      <div className="row">
-        <div className="col">
-          <span
-            className="icon-centered"
-            role="img"
-            style={{ fontSize: "100px" }}
-            aria-label="Globe Emoji (showing Americas)"
-          >
-            &#127758;
-          </span>{" "}
-          <p className="center-align">Pressure: {pressure} hpa</p>
-        </div>
-        <div className="col">
-          <span
-            className="icon-centered"
-            role="img"
-            style={{ fontSize: "100px" }}
-            aria-label="Globe Emoji (showing Americas)"
-          >
-            &#127758;
-          </span>{" "}
-          <p className="center-align">Humidity: {humidity} %</p>
-        </div>
-        <div className="col">
-          <span
-            className="icon-centered"
-            role="img"
-            style={{ fontSize: "100px" }}
-            aria-label="Globe Emoji (showing Americas)"
-          >
-            &#127758;
-          </span>{" "}
-          <p className="center-align">
-            Min temperature:{" "}
-            {option === "fahrenheit"
-              ? `${Math.round(temp_min)} °F`
-              : `${toCelsius(temp_min)} °C `}{" "}
-          </p>
+        <div className="col s12 col-centered">
+          <table className="centered">
+            <tbody>
+              <tr>
+                <td>
+                  Location: 
+                  <br />
+                  {weatherData.name}, {weatherData.sys.country}
+                </td>
+                <td>
+                  <p>
+                    Temperature:
+                    <br />
+                    {option === "fahrenheit"
+                      ? `${temp} °F`
+                      : `${toCelsius(temp)} °C `}
+                  </p>
+                </td>
+                <td>
+                  Toggle:
+                  <br />
+                  <label className="toggle-weather">
+                    {" "}
+                    °F{" "}
+                    <input
+                      type="radio"
+                      value="f"
+                      checked={option === "fahrenheit"}
+                      onChange={switchToF}
+                    ></input>
+                  </label>{" "}
+                  <label className="toggle-weather ml10">
+                    {" "}
+                    °C{" "}
+                    <input
+                      type="radio"
+                      value="c"
+                      checked={option === "celsius"}
+                      onChange={switchToC}
+                    ></input>
+                  </label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  Conditions: {weatherData.weather[0].main}{" "}
+                  <img
+                    className="weather-icon"
+                    src={iconUrl}
+                    alt="weather icon"
+                  ></img>
+                  <br />
+                  Specifically: {weatherData.weather[0].description}
+                </td>
+                <td>
+                  Min temperature:
+                  <br />
+                  {option === "fahrenheit"
+                    ? `${Math.round(temp_min)} °F`
+                    : `${toCelsius(temp_min)} °C `}
+                </td>
+                <td>
+                  Max temperature:
+                  <br />
+                  {option === "fahrenheit"
+                    ? `${Math.round(temp_max)} °F`
+                    : `${toCelsius(temp_max)} °C `}
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  Feels like:
+                  <br />
+                  {option === "fahrenheit"
+                    ? `${Math.round(feels_like)} °F`
+                    : `${toCelsius(feels_like)} °C `}
+                </td>
+                <td>Pressure: 
+                <br />
+                {pressure} hpa</td>
+                <td>Humidity: 
+                <br />
+                {humidity} %</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
-
-      {/* 
-        <p>Conditions: {weatherData.weather[0].main} - {weatherData.weather[0].description}</p>
-        <p>Temperature: {option === 'fahrenheit' ? `${Math.round(temp)} °F` : `${toCelsius(temp)} °C `} </p>
-        <p>Min temperature: {option === 'fahrenheit' ? `${Math.round(temp_min)} °F` : `${toCelsius(temp_min)} °C `} </p>
-        <p>Max temperature: {option === 'fahrenheit' ? `${Math.round(temp_max)} °F` : `${toCelsius(temp_max)} °C `}</p>
-        <p>Feels like: {option === 'fahrenheit' ? `${Math.round(feels_like)} °F` : `${toCelsius(feels_like)} °C `}</p>
-        <p>Pressure: {pressure} hpa</p>
-        <p>Humidity: {humidity} %</p>
-        <p></p> */}
     </div>
   );
 };

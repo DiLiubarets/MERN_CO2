@@ -28,8 +28,10 @@ const LocationButton = ({ setLocation, getWeatherData, setFetching }) => {
   };
 
   return (
-    <div>
-      <button onClick={handleClick} className="green-btn btn-small">
+    <div className="center-align mb20">
+      <h3>See your local weather</h3>
+      <p className="m20 p20">Sometimes CO₂ isn't the only reason to avoid the outdoors. Check what your weather looks like by clicking the button below.</p>
+      <button onClick={handleClick} className="green-btn btn-large">
         Current Location
       </button>
     </div>

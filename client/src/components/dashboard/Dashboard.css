@@ -7,6 +7,7 @@
   -webkit-box-shadow: 0px 0px 20px 1px #ccc !important; /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
   -moz-box-shadow: 0px 0px 20px 1px #ccc !important; /* Firefox 3.5 - 3.6 */
   box-shadow: 0px 0px 20px 1px #ccc !important; /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
+  height: 560px;
 }
 .dashboard-card2 {
   border-radius: 0px 30px 30px 0px !important;
@@ -16,6 +17,7 @@
   box-shadow: 0px 0px 20px 1px #ccc !important; /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
   margin-left: -20px !important;
   z-index: 0;
+  height: 560px;
 }
 .picker {
   font-size: 12px !important;
@@ -109,9 +111,6 @@ input#stopDay {
 .datepicker-container.modal-content {
   border-radius: 30px !important;
 }
-.card-panel {
-  height: 540px;
-}
 .chart-side {
   border-radius: 30px 0 30px 30px !important;
   background-color: #113031 !important;
@@ -120,12 +119,22 @@ input#stopDay {
   color: white;
   z-index: 1;
   position: relative;
+  height: 560px;
 }
 .chart-titles {
   font-size: 10px;
   padding: 10px 0 10px 0;
 }
-.weather {
+.poppins-title {
+  font-family: "Poppins", Arial, Helvetica, sans-serif;
+  font-weight: 600;
+}
+.dashboard-card-weather {
+  border-radius: 30px !important;
+  box-shadow: none !important;
+  -webkit-box-shadow: 0px 0px 20px 1px #ccc !important; /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+  -moz-box-shadow: 0px 0px 20px 1px #ccc !important; /* Firefox 3.5 - 3.6 */
+  box-shadow: 0px 0px 20px 1px #ccc !important; /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
   margin-top: -10px !important;
   margin-bottom: 40px !important;
 }
