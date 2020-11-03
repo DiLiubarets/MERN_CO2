@@ -48,7 +48,7 @@ var chartData = {
       ],
       yAxes: [
         {
-          display: false, //this will remove all the x-axis grid lines
+          display: true, //this will remove all the x-axis grid lines
         },
       ],
     },

@@ -3,17 +3,36 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser, deleteUser } from "../../actions/authActions";
 import classnames from "classnames";
+import axios from "axios";
 
+let context;
 class Settings extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+    context = this;
     this.state = {
       email: "",
       password: "",
       errors: {},
+      user: this.props.auth.user
     };
   }
-
+  requestNewKey() {
+    axios
+      .post("/api/users/newKey", {
+        apiKey: context.props.auth.user.apiKey,
+      })
+      .then(function(response) {
+        context.props.auth.user.apiKey = response.data;
+        context.setState({
+          user: context.props.auth.user,
+        });
+        //user.apiKey = response.data
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+  }
   componentDidMount() {
     console.log("componentDidMount is working");
   }
@@ -48,7 +67,6 @@ class Settings extends Component {
   };
 
   render() {
-    const { user } = this.props.auth;
     const { errors } = this.state;
 
     return (
@@ -64,11 +82,17 @@ class Settings extends Component {
             <p>Copy and Paste from Below</p>
             <input
               disabled
-              value={user.apiKey}
+              value={this.state.user.apiKey}
               id="disabled"
               type="text"
               class="validate"
             />
+            <button
+              className="green-btn btn-small ml30"
+              onClick={this.requestNewKey}
+            >
+              Request new API key
+            </button>
           </div>
         </div>
         <div className="row m20">

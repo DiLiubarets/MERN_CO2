@@ -29,9 +29,15 @@ const socketSetter = function (apiKey, websocket) {
 };
 
 const socketCleaner = function (apiKey) {
-  delete socketObject[apiKey];
+  if (socketObject[apiKey]) {
+    socketObject[apiKey].close();
+    delete socketObject[apiKey];
+  }
 };
 
+const socketGetter = function (apiKey) {
+  return socketObject[apiKey];
+};
 const sendHistoricalData = function (apiKey, params) {
   if (socketObject[apiKey]) {
     User.aggregate(
@@ -43,10 +49,12 @@ const sendHistoricalData = function (apiKey, params) {
               $filter: {
                 input: "$sensorData",
                 as: "data",
-                cond: { $and: [
-                  { $gte: ["$$data.timestamp", params.start] },
-                  { $lte: ["$$data.timestamp", params.stop] }
-                ] }
+                cond: {
+                  $and: [
+                    { $gte: ["$$data.timestamp", params.start] },
+                    { $lte: ["$$data.timestamp", params.stop] },
+                  ],
+                },
               },
             },
           },
@@ -57,9 +65,15 @@ const sendHistoricalData = function (apiKey, params) {
         if (err) {
           console.log(err);
         } else {
-          //console.log(docs[0].sensorData)
-          //console.log(socketObject[apiKey])
-          socketObject[apiKey].send(JSON.stringify({historicalData: docs[0].sensorData}))
+          console.log(docs);
+          if (docs[0]) {
+            //console.log(docs[0].sensorData)
+            socketObject[apiKey].send(
+              JSON.stringify({ historicalData: docs[0].sensorData })
+            );
+          } else {
+            socketObject[apiKey].send(JSON.stringify({ historicalData: {} }));
+          }
         }
       }
     );
@@ -69,4 +83,5 @@ const sendHistoricalData = function (apiKey, params) {
 module.exports = router;
 module.exports.socketSetter = socketSetter;
 module.exports.socketCleaner = socketCleaner;
+module.exports.socketGetter = socketGetter;
 module.exports.sendHistoricalData = sendHistoricalData;
