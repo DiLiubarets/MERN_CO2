@@ -9,7 +9,6 @@ import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import CurrentLocationButton from "../Weather/CurrentLocationButton";
 import WeatherContainer from "../Weather/WeatherContainer";
-import Img from "../../images/logo.svg";
 
 let ws = null;
 var massPopChart;
@@ -284,7 +283,7 @@ class Dashboard extends Component {
           <div className="col s8 m10 l8">
             <div className="card horizontal transparent mb0">
               <div className="card-image">
-                <img src={Img} alt="CO2 Tracker Logo" />
+                <img style={{ height: "100px" }}src="https://raw.githubusercontent.com/DiLiubarets/MERN_CO2/ee0324595ed9d947d9114bce20ccd05dccd47908/client/src/images/logo.svg" alt="CO2 Tracker Logo" />
               </div>
               <div className="card-stacked">
                 <div className="card-content">
