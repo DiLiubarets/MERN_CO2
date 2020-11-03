@@ -51,13 +51,17 @@ app.use(
 );
 app.use(bodyParser.json());
 
-
+app.use(express.static('client/build'));
 // Connect to MongoDB
 mongoose
   .connect(
-    dbCred.dbURL + dbCred.secretOrKey + dbCred.dbPath,
-    {   dbName: 'note',
-    useNewUrlParser: true }
+    process.env.MONGODB_URI || 'mongodb://localhost/deep-thoughts',
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useCreateIndex: true,
+      useFindAndModify: false
+    }
   )
   .then(() => console.log("MongoDB successfully connected"))
   .catch(err => console.log(err));
@@ -84,7 +88,7 @@ wsServer.on('connection', (socket, req) => {
 });
 
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 3001;
 
 // `server` is a vanilla Node.js HTTP server, so use
 // the same ws upgrade process described here:

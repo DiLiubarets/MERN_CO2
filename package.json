@@ -1,7 +1,7 @@
 {
-  "name": "mern-CO₂ tracker",
+  "name": "mern-auth",
   "version": "1.0.0",
-  "description": "Mern CO₂ tracker",
+  "description": "Mern Auth Example",
   "main": "server.js",
   "scripts": {
     "client-install": "npm install --prefix client",
