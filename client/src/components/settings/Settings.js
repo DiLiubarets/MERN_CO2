@@ -11,7 +11,6 @@ class Settings extends Component {
     super(props);
     context = this;
     this.state = {
-      email: "",
       password: "",
       errors: {},
       user: this.props.auth.user
@@ -57,7 +56,7 @@ class Settings extends Component {
     e.preventDefault();
 
     const userData = {
-      email: this.state.email,
+      email: this.state.user.userEmail,
       password: this.state.password,
     };
     console.log(userData);
