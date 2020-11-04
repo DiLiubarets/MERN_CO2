@@ -1,10 +1,11 @@
+require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const passport = require("passport");
 const path = require("path");
 const ws = require("ws");
-require("dotenv").config();
+
 
 // DB Config
 const dbCred = require("./config/dev");
