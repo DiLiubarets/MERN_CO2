@@ -56,8 +56,7 @@ app.use(bodyParser.json());
 // Connect to MongoDB
 mongoose
   .connect(
-    process.env.MongoURI ||
-      dbCred.dbURL + dbCred.secretOrKey + dbCred.dbPath + dbCred.dbName,
+    process.env.MONGODB_URI ,
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
