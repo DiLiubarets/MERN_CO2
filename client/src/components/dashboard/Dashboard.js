@@ -138,9 +138,8 @@ class Dashboard extends Component {
 
     const { user } = this.props.auth;
     let context = this;
-    var HOST = location.origin.replace("https:", 'ws')
-var ws = new WebSocket(HOST);
-    ws = new WebSocket(HOST +"//mern-co2-tracker.herokuapp.com/dashboard?key=" + user.apiKey);
+    
+    ws = new WebSocket("ws://mern-co2-tracker.herokuapp.com/?key=" + user.apiKey);
 
     //request historical
     ws.onopen = function() {
