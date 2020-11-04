@@ -50,8 +50,13 @@ class App extends Component {
                 <Route exact path="/" component={Landing} />
                 <Route exact path="/register" component={Register} />
                 <Route exact path="/login" component={Login} />
+                <Route
+                    exact
+                    path="/device-info"
+                    component={DeviceInfo}
+                  />
                 <Switch>
-                  <PrivateRoute
+                <PrivateRoute
                     exact
                     path="/device-info"
                     component={DeviceInfo}
