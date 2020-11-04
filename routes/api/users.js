@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const keys = require("../../config/keys");
+const keys = require("../../config/dev");
 const passport = require("passport");
 const sensor = require("./sensor");
 
@@ -14,9 +14,6 @@ const validateDeleteInput = require("../../validation/delete");
 // Load User model
 const User = require("../../models/User");
 
-// @route POST api/users/register
-// @desc Register user
-// @access Public
 router.post("/register", (req, res) => {
   // Form validation
 
