@@ -138,8 +138,10 @@ class Dashboard extends Component {
 
     const { user } = this.props.auth;
     let context = this;
-    
-    ws = new WebSocket("wss://mern-co2-tracker.herokuapp.com/?key=" + user.apiKey);
+
+    ws = new WebSocket(
+      "wss://mern-co2-tracker.herokuapp.com/?key=" + user.apiKey
+    );
 
     //request historical
     ws.onopen = function() {
@@ -212,6 +214,7 @@ class Dashboard extends Component {
         if (sum !== 0) {
           average = Math.trunc(sum / validCount);
         }
+
         context.setState({
           max: max,
           min: min,
@@ -284,13 +287,20 @@ class Dashboard extends Component {
           <div className="col s12 ml10">
             <div className="card horizontal transparent mb0">
               <div className="card-image mt20">
-                <img style={{ height: "100px" }}src="https://raw.githubusercontent.com/DiLiubarets/MERN_CO2/ee0324595ed9d947d9114bce20ccd05dccd47908/client/src/images/logo.svg" alt="CO2 Tracker Logo" />
+                <img
+                  style={{ height: "100px" }}
+                  src="https://raw.githubusercontent.com/DiLiubarets/MERN_CO2/ee0324595ed9d947d9114bce20ccd05dccd47908/client/src/images/logo.svg"
+                  alt="CO2 Tracker Logo"
+                />
               </div>
               <div className="card-stacked">
                 <div className="card-content">
                   <h6 className="mb0">Hi, {user.name.split(" ")[0]}</h6>
                   <h1 className="mt0" style={{ fontSize: "34px" }}>
-                    <span className="poppins-title">You are logged into a </span>CO₂ Tracker <span className="poppins-title">app</span>
+                    <span className="poppins-title">
+                      You are logged into a{" "}
+                    </span>
+                    CO₂ Tracker <span className="poppins-title">app</span>
                   </h1>
                 </div>
               </div>
@@ -345,13 +355,13 @@ class Dashboard extends Component {
                 <div className="row">
                   <div className="input-field dashboard-input col">
                     <input id="startDay" type="text" className="startPicker" />
-                    <label for="startDay" className="picker pl0">
+                    <label htmlFor="startDay" className="picker pl0">
                       First day
                     </label>
                   </div>
                   <div className="input-field dashboard-input col">
                     <input id="stopDay" type="text" className="stopPicker" />
-                    <label for="stopDay" className="picker pl0">
+                    <label htmlFor="stopDay" className="picker pl0">
                       Last day
                     </label>
                   </div>
@@ -363,7 +373,7 @@ class Dashboard extends Component {
                       type="text"
                       className="startTimePicker"
                     />
-                    <label for="startTime" className="picker pl0">
+                    <label htmlFor="startTime" className="picker pl0">
                       Start time
                     </label>
                   </div>
@@ -373,7 +383,7 @@ class Dashboard extends Component {
                       type="text"
                       className="stopTimePicker"
                     />
-                    <label for="stopTime" className="picker pl0">
+                    <label htmlFor="stopTime" className="picker pl0">
                       End time
                     </label>
                   </div>

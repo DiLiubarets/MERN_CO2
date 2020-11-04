@@ -16,7 +16,6 @@ export const getWeatherData = (param1, param2, type) => {
         .then(dispatch(setFetchingFalse()))
     }
 }
-console.log(getWeatherData)
 
 export const setCurrentLocation = location => {
     return { type: `SET_LOCATION`, payload: location }

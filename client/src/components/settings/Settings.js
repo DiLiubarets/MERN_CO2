@@ -32,9 +32,7 @@ class Settings extends Component {
         console.log(error);
       });
   }
-  componentDidMount() {
-    console.log("componentDidMount is working");
-  }
+ 
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.auth.isAuthenticated) {
@@ -84,7 +82,7 @@ class Settings extends Component {
               value={this.state.user.apiKey}
               id="disabled"
               type="text"
-              class="validate"
+              className="validate"
             />
             <button
               className="green-btn btn-small ml30"

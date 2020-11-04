@@ -18,7 +18,7 @@ class Navbar extends Component {
 
     return (
       <nav className="navbar-style nav-extended">
-        <div class="nav-wrapper">
+        <div className="nav-wrapper">
           <NavLink
             to="/"
             style={{
@@ -34,9 +34,9 @@ class Navbar extends Component {
               alt="<MERN/> CO₂ Tracker logo"
             />
           </NavLink>
-          <a href="#" data-target="slide-out" className="sidenav-trigger right"><i className="material-icons">menu</i></a>
+          <a href="/#" data-target="slide-out" className="sidenav-trigger right"><i className="material-icons">menu</i></a>
 
-          <ul id="nav-mobile" class="right hide-on-med-and-down mr20">
+          <ul id="nav-mobile" className="right hide-on-med-and-down mr20">
               
             {this.props.auth.isAuthenticated && (
               <div>
@@ -70,7 +70,7 @@ class Navbar extends Component {
             )}
           </ul>
 
-          <ul id="slide-out" class="sidenav">
+          <ul id="slide-out" className="sidenav">
               
             {this.props.auth.isAuthenticated && (
               <div>
