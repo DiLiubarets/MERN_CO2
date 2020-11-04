@@ -7,7 +7,7 @@ const ws = require("ws");
 require("dotenv").config();
 
 // DB Config
-const dbCred = require("./config/dev");
+const dbCred = require("./config/keys");
 const stripe = require("stripe")(process.env.stripe || dbCred.stripe);
 
 const users = require("./routes/api/users");
@@ -51,12 +51,11 @@ app.use(
 );
 app.use(bodyParser.json());
 
-
-
 // Connect to MongoDB
 mongoose
   .connect(
-    process.env.MongoURI || dbCred.dbURL + dbCred.secretOrKey + dbCred.dbPath + dbCred.dbName,
+    process.env.MongoURI ||
+      dbCred.dbURL + dbCred.secretOrKey + dbCred.dbPath + dbCred.dbName,
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
@@ -97,7 +96,6 @@ if (process.env.NODE_ENV === "production") {
   app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "./client/build/index.html/"));
   });
- 
 }
 
 // `server` is a vanilla Node.js HTTP server, so use
