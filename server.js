@@ -51,16 +51,13 @@ app.use(
 );
 app.use(bodyParser.json());
 
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "./client/build/index.html/"));
-});
+
 
 // Connect to MongoDB
 mongoose
   .connect(
-    process.env.MongoURI || dbCred.dbURL + dbCred.secretOrKey + dbCred.dbPath,
+    process.env.MongoURI || dbCred.dbURL + dbCred.secretOrKey + dbCred.dbPath + dbCred.dbName,
     {
-      // dbName: "note",
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useCreateIndex: true,
@@ -97,10 +94,10 @@ app.use("/api/sensor", sensor);
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 
-  app.get("*"),
-    (req, res) => {
-      res.sendFile(path.join(__dirname), "client", "build", "index.html");
-    };
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "./client/build/index.html/"));
+  });
+ 
 }
 
 // `server` is a vanilla Node.js HTTP server, so use
