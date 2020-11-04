@@ -14,6 +14,9 @@ const validateDeleteInput = require("../../validation/delete");
 // Load User model
 const User = require("../../models/User");
 
+// @route POST api/users/register
+// @desc Register user
+// @access Public
 router.post("/register", (req, res) => {
   // Form validation
 
@@ -86,7 +89,7 @@ router.post("/login", (req, res) => {
         // Sign token
         jwt.sign(
           payload,
-          keys.secretOrKey,
+          process.env.secretOrKey || keys.secretOrKey,
           {
             expiresIn: 31556926, // 1 year in seconds
           },
