@@ -20,3 +20,6 @@ nav ul a:active {
     opacity: 1;
     color: #00ff45 !important;
 }
+.sidenav li>a {
+    color: #fff !important;
+}

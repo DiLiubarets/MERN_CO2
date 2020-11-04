@@ -5,13 +5,19 @@ import LogOut from "../../auth/Logout";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../../actions/authActions";
+import M from  'materialize-css/dist/js/materialize.min.js';
 
 class Navbar extends Component {
+  componentDidMount() {
+    let sidenav = document.querySelector('#slide-out');
+    M.Sidenav.init(sidenav, {});
+  }
+
   render() {
     console.log(this.props.auth.isAuthenticated);
 
     return (
-      <nav className="navbar-style">
+      <nav className="navbar-style nav-extended">
         <div class="nav-wrapper">
           <NavLink
             to="/"
@@ -28,7 +34,43 @@ class Navbar extends Component {
               alt="<MERN/> CO₂ Tracker logo"
             />
           </NavLink>
+          <a href="#" data-target="slide-out" className="sidenav-trigger right"><i className="material-icons">menu</i></a>
+
           <ul id="nav-mobile" class="right hide-on-med-and-down mr20">
+              
+            {this.props.auth.isAuthenticated && (
+              <div>
+                <li>
+                <NavLink to="/device-info">Device Info</NavLink>
+              </li>
+                <li>
+                  <NavLink to="/dashboard">Dashboard</NavLink>
+                </li>
+                <li>
+                  <NavLink to="/settings">Settings</NavLink>
+                </li>
+                <li>
+                  <LogOut />
+                </li>
+              </div>
+            )}
+
+            {!this.props.auth.isAuthenticated && (
+              <div>
+                <li>
+                <NavLink to="/device-info">Device Info</NavLink>
+              </li>
+                <li>
+                  <NavLink to="/login">Log In</NavLink>
+                </li>
+                <li>
+                  <NavLink to="/register">Register</NavLink>
+                </li>
+              </div>
+            )}
+          </ul>
+
+          <ul id="slide-out" class="sidenav">
               
             {this.props.auth.isAuthenticated && (
               <div>
