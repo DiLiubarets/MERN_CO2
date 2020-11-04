@@ -9,7 +9,7 @@ const ws = require("ws");
 
 // DB Config
 const dbCred = require("./config/dev");
-const stripe = require("stripe")(dbCred.stripe);
+const stripe = require("stripe")(process.env.stripe || dbCred.stripe);
 
 const users = require("./routes/api/users");
 const sensor = require("./routes/api/sensor");
