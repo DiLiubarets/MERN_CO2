@@ -7,6 +7,7 @@ let socketObject = {};
 router.post("/update", (req, res) => {
   const apiKey = req.body.apiKey;
   const value = req.body.value;
+  console.log("works")
   console.log(apiKey, value);
 
   if (socketObject[apiKey]) {
