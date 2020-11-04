@@ -42,24 +42,28 @@ class App extends Component {
   render() {
     return (
       <div>
-      <div className="container container-style">
-        <Provider store={store}>
-          <Router>
-            <div className="App">
-              <Navbar />
-              <Route exact path="/" component={Landing} />
-              <Route exact path="/register" component={Register} />
-              <Route exact path="/login" component={Login} />
-              <Route exact path="/device-info" component={DeviceInfo} />
-              <Switch>
-                <PrivateRoute exact path="/dashboard" component={Dashboard} />
-                <PrivateRoute exact path="/settings" component={Settings} />
-              </Switch>
-            </div>
-          </Router>
-        </Provider>
-      </div>
-      <Footer />
+        <div className="container container-style">
+          <Provider store={store}>
+            <Router>
+              <div className="App">
+                <Navbar />
+                <Route exact path="/" component={Landing} />
+                <Route exact path="/register" component={Register} />
+                <Route exact path="/login" component={Login} />
+                <Switch>
+                  <PrivateRoute
+                    exact
+                    path="/device-info"
+                    component={DeviceInfo}
+                  />
+                  <PrivateRoute exact path="/dashboard" component={Dashboard} />
+                  <PrivateRoute exact path="/settings" component={Settings} />
+                </Switch>
+              </div>
+            </Router>
+          </Provider>
+        </div>
+        <Footer />
       </div>
     );
   }
