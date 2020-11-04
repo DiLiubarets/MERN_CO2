@@ -2,29 +2,32 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const passport = require("passport");
-const ws = require('ws');
+const path = require('path')
+const ws = require("ws");
+require('dotenv').config();
 
 // DB Config
-const dbCred = require("./config/keys");
-const stripe = require('stripe')(dbCred.stripe);
+// const dbCred = require("./config/keys");
+const stripe = require("stripe")(process.env.stripe);
 
 const users = require("./routes/api/users");
-const sensor = require("./routes/api/sensor")
+const sensor = require("./routes/api/sensor");
+
 
 const app = express();
-
+const port = process.env.PORT || 5000;
 // Stripe
-const YOUR_DOMAIN = 'http://localhost:5000/checkout';
+const YOUR_DOMAIN = "http://localhost:5000/checkout";
 
-app.post('/create-session', async (req, res) => {
+app.post("/create-session", async (req, res) => {
   const session = await stripe.checkout.sessions.create({
-    payment_method_types: ['card'],
+    payment_method_types: ["card"],
     line_items: [
       {
         price_data: {
-          currency: 'usd',
+          currency: "usd",
           product_data: {
-            name: 'Stubborn Attachments',
+            name: "Stubborn Attachments",
             images: [""],
           },
           unit_amount: 39900,
@@ -32,7 +35,7 @@ app.post('/create-session', async (req, res) => {
         quantity: 1,
       },
     ],
-    mode: 'payment',
+    mode: "payment",
     success_url: `${YOUR_DOMAIN}?success=true`,
     cancel_url: `${YOUR_DOMAIN}?canceled=true`,
   });
@@ -41,26 +44,29 @@ app.post('/create-session', async (req, res) => {
 });
 
 
-
-
 // Bodyparser middleware
 app.use(
   bodyParser.urlencoded({
-    extended: false
+    extended: false,
   })
 );
 app.use(bodyParser.json());
 
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "./client/build/index.html"));
+});
 
 // Connect to MongoDB
 mongoose
-  .connect(
-    dbCred.dbURL + dbCred.secretOrKey + dbCred.dbPath,
-    {   dbName: 'note',
-    useNewUrlParser: true }
-  )
+  .connect(process.env.MongoURI || dbCred.dbURL + dbCred.secretOrKey + dbCred.dbPath, {
+    dbName: 'note',
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: false,
+  })
   .then(() => console.log("MongoDB successfully connected"))
-  .catch(err => console.log(err));
+  .catch((err) => console.log(err));
 
 // Passport middleware
 app.use(passport.initialize());
@@ -68,31 +74,43 @@ app.use(passport.initialize());
 // Passport config
 require("./config/passport")(passport);
 
+
+const wsServer = new ws.Server({ noServer: true });
+wsServer.on("connection", (socket, req) => {
+  let key = req.url.substring(6, req.url.length);
+  sensor.socketSetter(key, socket);
+  console.log(key, "opened");
+  socket.on("close", () => {
+    console.log(key, "closed");
+    sensor.socketCleaner(key);
+  });
+  socket.on("message", (params) => {
+    sensor.sendHistoricalData(key, JSON.parse(params));
+  });
+});
+
+
 // Routes
 app.use("/api/users", users);
 app.use("/api/sensor", sensor);
 
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'));
 
+  app.get('*'), (req, res) => {
+    res.sendFile(path.join(__dirname), "client", 'build', 'index.html')
+  }
+} 
 
-const wsServer = new ws.Server({ noServer: true });
-wsServer.on('connection', (socket, req) => {
-  let key = req.url.substring(6, req.url.length)
-  sensor.socketSetter(key, socket)
-  console.log(key, "opened")
-  socket.on('close', () => { console.log(key, "closed"); sensor.socketCleaner(key) })
-  socket.on('message', (params) => { sensor.sendHistoricalData(key, JSON.parse(params)) })
-});
-
-
-const port = process.env.PORT || 5000;
 
 // `server` is a vanilla Node.js HTTP server, so use
 // the same ws upgrade process described here:
 // https://www.npmjs.com/package/ws#multiple-servers-sharing-a-single-https-server
-const server = app.listen(port, () => console.log(`Server up and running on port ${port} !`));
-server.on('upgrade', (request, socket, head) => {
-  wsServer.handleUpgrade(request, socket, head, socket => {
-    wsServer.emit('connection', socket, request);
+const server = app.listen(port, () =>
+  console.log(`Server up and running on port ${port} !`)
+);
+server.on("upgrade", (request, socket, head) => {
+  wsServer.handleUpgrade(request, socket, head, (socket) => {
+    wsServer.emit("connection", socket, request);
   });
 });
-
