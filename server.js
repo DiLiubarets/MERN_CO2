@@ -60,7 +60,7 @@ mongoose
   .connect(
     process.env.MongoURI || dbCred.dbURL + dbCred.secretOrKey + dbCred.dbPath,
     {
-      dbName: "note",
+      // dbName: "note",
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useCreateIndex: true,
