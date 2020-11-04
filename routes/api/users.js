@@ -15,8 +15,7 @@ const validateDeleteInput = require("../../validation/delete");
 const User = require("../../models/User");
 
 router.post("/register", (req, res) => {
-  // Form validation
-
+ 
   const { errors, isValid } = validateRegisterInput(req.body);
 
   // Check validation
