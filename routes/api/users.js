@@ -14,9 +14,6 @@ const validateDeleteInput = require("../../validation/delete");
 // Load User model
 const User = require("../../models/User");
 
-// @route POST api/users/register
-// @desc Register user
-// @access Public
 router.post("/register", (req, res) => {
   // Form validation
 
