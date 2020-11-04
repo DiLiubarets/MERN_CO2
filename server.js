@@ -56,7 +56,7 @@ app.use(bodyParser.json());
 // Connect to MongoDB
 mongoose
   .connect(
-    process.env.MONGODB_URI ,
+    "mongodb+srv://diLiu:Ukrayina91@cluster0.t7tmk.mongodb.net/note?retryWrites=true&w=majority" ,
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
