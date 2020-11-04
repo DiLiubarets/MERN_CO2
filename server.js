@@ -2,18 +2,17 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const passport = require("passport");
-const path = require('path')
+const path = require("path");
 const ws = require("ws");
-require('dotenv').config();
+require("dotenv").config();
 
 // DB Config
- const dbCred = require("./config/dev");
-const stripe = require("stripe")(process.env.stripe || dbCred.stripe );
+const dbCred = require("./config/dev");
+const stripe = require("stripe")(process.env.stripe || dbCred.stripe);
 
 const users = require("./routes/api/users");
 const sensor = require("./routes/api/sensor");
 const { db } = require("./models/User");
-
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -44,7 +43,6 @@ app.post("/create-session", async (req, res) => {
   res.json({ id: session.id });
 });
 
-
 // Bodyparser middleware
 app.use(
   bodyParser.urlencoded({
@@ -59,13 +57,16 @@ app.get("*", (req, res) => {
 
 // Connect to MongoDB
 mongoose
-  .connect(process.env.MongoURI || dbCred.dbURL + dbCred.secretOrKey + dbCred.dbPath, {
-    dbName: 'note',
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true,
-    useFindAndModify: false,
-  })
+  .connect(
+    process.env.MongoURI || dbCred.dbURL + dbCred.secretOrKey + dbCred.dbPath,
+    {
+      dbName: "note",
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useCreateIndex: true,
+      useFindAndModify: false,
+    }
+  )
   .then(() => console.log("MongoDB successfully connected"))
   .catch((err) => console.log(err));
 
@@ -74,7 +75,6 @@ app.use(passport.initialize());
 
 // Passport config
 require("./config/passport")(passport);
-
 
 const wsServer = new ws.Server({ noServer: true });
 wsServer.on("connection", (socket, req) => {
@@ -90,19 +90,18 @@ wsServer.on("connection", (socket, req) => {
   });
 });
 
-
 // Routes
 app.use("/api/users", users);
 app.use("/api/sensor", sensor);
 
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('client/build'));
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
 
-  app.get('*'), (req, res) => {
-    res.sendFile(path.join(__dirname), "client", 'build', 'index.html')
-  }
-} 
-
+  app.get("*"),
+    (req, res) => {
+      res.sendFile(path.join(__dirname), "client", "build", "index.html");
+    };
+}
 
 // `server` is a vanilla Node.js HTTP server, so use
 // the same ws upgrade process described here:
