@@ -6,7 +6,6 @@ const path = require("path");
 const ws = require("ws");
 require("dotenv").config();
 
-
 // DB Config
 const dbCred = require("./config/dev");
 const stripe = require("stripe")(dbCred.stripe);

@@ -6,7 +6,6 @@ const keys = require("../../config/dev");
 const passport = require("passport");
 const sensor = require("./sensor");
 
-
 // Load input validation
 const validateRegisterInput = require("../../validation/register");
 const validateLoginInput = require("../../validation/login");
