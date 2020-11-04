@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import "./Stripe.css";
-import ImgCO2 from "../../images/CO2-tracker.png"
+import ImgCO2 from "../../images/CO2-tracker.png";
 
 // Make sure to call `loadStripe` outside of a component’s render to avoid
 // recreating the `Stripe` object on every render.
@@ -10,31 +10,29 @@ const stripePromise = loadStripe(
 );
 
 const ProductDisplay = ({ handleClick }) => (
-  <section>
-    <div className="product">
-      <img
-         src={ImgCO2}
-        alt=""
-      />
-      <div
-        style={{
-          marginBottom: "2rem",
-        }}
-        className="description"
-      >
-        <h3>CO₂ tracker device </h3>
-        <h5>$399</h5>
+  <div>
+    <div className="col s12 m7">
+      <div className="card component-card">
+        <div className="card-image">
+          <img alt="Complete device" src={ImgCO2} className="carousel-img" />
+        </div>
+        <div className="card-content">
+          <h2 className="card-title">CO₂ tracker device</h2>
+          <p>Skip the work of assembling the device yourself, and pay us $399 instead.</p>
+        </div>
+        <div className="card-action">
+          <button
+            className="btn-large green-btn device-btn"
+            id="checkout-button"
+            role="link"
+            onClick={handleClick}
+          >
+            Buy Directly
+          </button>
+        </div>
       </div>
     </div>
-    <button
-      className="btn-large green-btn"
-      id="checkout-button"
-      role="link"
-      onClick={handleClick}
-    >
-      Checkout
-    </button>
-  </section>
+  </div>
 );
 
 const Message = ({ message }) => (
