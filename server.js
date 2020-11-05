@@ -30,7 +30,7 @@ app.post("/create-session", async (req, res) => {
           currency: "usd",
           product_data: {
             name: "Stubborn Attachments",
-            images: [""],
+            images: ["https://i.imgur.com/EHyR2nP.png"],
           },
           unit_amount: 39900,
         },

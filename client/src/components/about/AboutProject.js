@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import ImgD from "../../images/DevelopmentBoard .jpg";
-import ImgM from "../../images/ModuleDisplay.jpg";
-import ImgS from "../../images/Sensor.jpg";
+import ImgD from "../../images/DevelopmentBoard2.png";
+import ImgM from "../../images/ModuleDisplay.png";
+import ImgS from "../../images/Sensor.png";
 
 class AboutProject extends Component {
   render() {

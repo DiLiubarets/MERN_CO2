@@ -1,38 +1,16 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { logoutUser } from "../../actions/authActions";
-import Slider from "../Slider/Slider";
+import Slider from "../Stripe/Stripe";
 import Stripe from "../Stripe/Stripe";
 import ModuleDisplay from "../about/ModuleDisplay";
 import DevelopmentBoard from "../about/DevelopmentBoard";
 import Sensor from "../about/Sensor";
 import "./DeviceInfo.css";
 
+
 class DeviceInfo extends Component {
+
   render() {
-    const deviceItems = [
-      {
-        title: "Fully Built Device",
-        id: 1,
-        Component: Stripe,
-      },
-      {
-        title: "Module Display",
-        id: 2,
-        Component: ModuleDisplay,
-      },
-      {
-        title: "Sensor",
-        id: 3,
-        Component: Sensor,
-      },
-      {
-        title: "Development Board",
-        id: 4,
-        Component: DevelopmentBoard,
-      },
-    ];
+   
 
     return (
       <div>
@@ -48,43 +26,14 @@ class DeviceInfo extends Component {
             </p>
           </div>
         </div>
-        <div className="row" style={{ paddingBottom: "60px" }}>
-          <Slider
-            options={{
-              // autoPlay: 4000,
-              // pauseAutoPlayOnHover: true,
-              wrapAround: false,
-              fullscreen: false,
-              adaptiveHeight: false,
-            }}
-          >
-            {deviceItems.map(({ id, Component }) => (
-              <div
-                style={{
-                  width: "22em",
-                  height: "700px",
-                  margin: "3em 2em 0 2em",
-                  textAlign: "center",
-                }}
-                key={id}
-              >
-                {/* Where the magic happens */}
-                {Component && <Component />}
-              </div>
-            ))}
-          </Slider>
-        </div>
+        <Stripe/>
+        <ModuleDisplay/>
+        <DevelopmentBoard/>
+        <Sensor/>
       </div>
     );
   }
 }
-DeviceInfo.propTypes = {
-  logoutUser: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired,
-}
-const mapStateToProps = (state) => ({
-  auth: state.auth,
-});
 
-export default connect(mapStateToProps, { logoutUser })(DeviceInfo);
+export default DeviceInfo;
 
