@@ -19,7 +19,7 @@ const app = express();
 const port = process.env.PORT || 5000;
 
 // Stripe
-const YOUR_DOMAIN = "http://localhost:5000/checkout";
+const YOUR_DOMAIN = "https://mern-co2-tracker.herokuapp.com/checkout";
 
 app.post("/create-session", async (req, res) => {
   const session = await stripe.checkout.sessions.create({
