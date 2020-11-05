@@ -41,7 +41,7 @@ class Navbar extends Component {
             {this.props.auth.isAuthenticated && (
               <div>
                 <li>
-                <NavLink to="/device-info">Device Info</NavLink>
+                <NavLink to="/deviceInfo">Device Info</NavLink>
               </li>
                 <li>
                   <NavLink to="/dashboard">Dashboard</NavLink>
@@ -58,7 +58,7 @@ class Navbar extends Component {
             {!this.props.auth.isAuthenticated && (
               <div>
                 <li>
-                <NavLink to="/device-info">Device Info</NavLink>
+                <NavLink to="/deviceInfo">Device Info</NavLink>
               </li>
                 <li>
                   <NavLink to="/login">Log In</NavLink>
@@ -75,7 +75,7 @@ class Navbar extends Component {
             {this.props.auth.isAuthenticated && (
               <div>
                 <li>
-                <NavLink to="/device-info">Device Info</NavLink>
+                <NavLink to="/deviceInfo">Device Info</NavLink>
               </li>
                 <li>
                   <NavLink to="/dashboard">Dashboard</NavLink>
@@ -92,7 +92,7 @@ class Navbar extends Component {
             {!this.props.auth.isAuthenticated && (
               <div>
                 <li>
-                <NavLink to="/device-info">Device Info</NavLink>
+                <NavLink to="/deviceInfo">Device Info</NavLink>
               </li>
                 <li>
                   <NavLink to="/login">Log In</NavLink>
