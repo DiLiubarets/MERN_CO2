@@ -14,7 +14,6 @@ class Navbar extends Component {
   }
 
   render() {
-    console.log(this.props.auth.isAuthenticated);
 
     return (
       <nav className="navbar-style nav-extended">
@@ -41,7 +40,7 @@ class Navbar extends Component {
             {this.props.auth.isAuthenticated && (
               <div>
                 <li>
-                <NavLink to="/device-info">Device Info</NavLink>
+                <NavLink to="/deviceInfo">Device Info</NavLink>
               </li>
                 <li>
                   <NavLink to="/dashboard">Dashboard</NavLink>
@@ -58,7 +57,7 @@ class Navbar extends Component {
             {!this.props.auth.isAuthenticated && (
               <div>
                 <li>
-                <NavLink to="/device-info">Device Info</NavLink>
+                <NavLink to="/deviceInfo">Device Info</NavLink>
               </li>
                 <li>
                   <NavLink to="/login">Log In</NavLink>
@@ -75,9 +74,6 @@ class Navbar extends Component {
             {this.props.auth.isAuthenticated && (
               <div>
                 <li>
-                <NavLink to="/device-info">Device Info</NavLink>
-              </li>
-                <li>
                   <NavLink to="/dashboard">Dashboard</NavLink>
                 </li>
                 <li>
@@ -92,7 +88,7 @@ class Navbar extends Component {
             {!this.props.auth.isAuthenticated && (
               <div>
                 <li>
-                <NavLink to="/device-info">Device Info</NavLink>
+                <NavLink to="/deviceInfo">Device Info</NavLink>
               </li>
                 <li>
                   <NavLink to="/login">Log In</NavLink>

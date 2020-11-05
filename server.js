@@ -30,7 +30,7 @@ app.post("/create-session", async (req, res) => {
           currency: "usd",
           product_data: {
             name: "Stubborn Attachments",
-            images: [""],
+            images: ["https://i.imgur.com/EHyR2nP.png"],
           },
           unit_amount: 39900,
         },
@@ -95,7 +95,7 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 
   app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "./client/build/index.html/"));
+    res.sendFile(path.join(__dirname, "./client/build/index.html"));
   });
 }
 
