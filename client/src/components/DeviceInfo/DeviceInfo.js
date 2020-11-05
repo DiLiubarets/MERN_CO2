@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { logoutUser } from "../../actions/authActions";
 import Slider from "../Slider/Slider";
 import Stripe from "../Stripe/Stripe";
 import ModuleDisplay from "../about/ModuleDisplay";
@@ -75,5 +78,13 @@ class DeviceInfo extends Component {
     );
   }
 }
+DeviceInfo.propTypes = {
+  logoutUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+}
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+});
 
-export default DeviceInfo;
+export default connect(mapStateToProps, { logoutUser })(DeviceInfo);
+
