@@ -141,7 +141,6 @@ class Dashboard extends Component {
 
     ws = new WebSocket(
       "wss://mern-co2-tracker.herokuapp.com/?key=" + user.apiKey
-      
     );
 
     //request historical
