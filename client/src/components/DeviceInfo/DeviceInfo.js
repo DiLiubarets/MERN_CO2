@@ -6,12 +6,8 @@ import DevelopmentBoard from "../about/DevelopmentBoard";
 import Sensor from "../about/Sensor";
 import "./DeviceInfo.css";
 
-
 class DeviceInfo extends Component {
-
   render() {
-   
-
     return (
       <div>
         <div className="row">
@@ -26,14 +22,30 @@ class DeviceInfo extends Component {
             </p>
           </div>
         </div>
-        <Stripe/>
-        <ModuleDisplay/>
-        <DevelopmentBoard/>
-        <Sensor/>
+        <hr className="breaker" />
+        <div className="row">
+          <div className="col s12 m10 l8 col-centered">
+            <div className="row">
+              <Stripe />
+            </div>
+            <hr className="breaker" />
+            <div className="row">
+              <ModuleDisplay />
+            </div>
+            <hr className="breaker" />
+            <div className="row">
+              <DevelopmentBoard />
+            </div>
+            <hr className="breaker" />
+            <div className="row">
+              <Sensor />
+            </div>
+            <hr className="breaker" />
+          </div>
+        </div>
       </div>
     );
   }
 }
 
 export default DeviceInfo;
-

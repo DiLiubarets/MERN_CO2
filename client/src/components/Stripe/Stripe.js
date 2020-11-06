@@ -11,26 +11,27 @@ const stripePromise = loadStripe(
 
 const ProductDisplay = ({ handleClick }) => (
   <div>
-    <div className="col s12 m7">
-      <div className="card component-card">
-        <div className="card-image">
-          <img alt="Complete device" src={ImgCO2} className="carousel-img" />
-        </div>
-        <div className="card-content">
-          <h2 className="card-title">CO₂ tracker device</h2>
-          <p>Skip the work of assembling the device yourself, and pay us $399 instead.</p>
-        </div>
-        <div className="card-action">
-          <button
-            className="btn-large green-btn device-btn"
-            id="checkout-button"
-            role="link"
-            onClick={handleClick}
-          >
-            Buy Directly
-          </button>
-        </div>
-      </div>
+    <div className="col s12 l3">
+      <img
+        alt="Complete device"
+        src={ImgCO2}
+        className="device-img img-centered mb20"
+      />
+    </div>
+    <div className="col s12 l5 push-l4 center-align">
+    <h3 className="mt20">CO₂ tracker device</h3>
+      <p>
+        Skip the work of assembling the device yourself, and pay us $399
+        instead.
+      </p>
+      <button
+        className="btn-large green-btn device-btn"
+        id="checkout-button"
+        role="link"
+        onClick={handleClick}
+      >
+        Buy Directly
+      </button>
     </div>
   </div>
 );
