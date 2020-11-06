@@ -40,6 +40,16 @@ class DeviceInfo extends Component {
               <Sensor />
             </div>
             <hr className="breaker" />
+            <div className="row">
+              <h3 className="mt20">Source Code for hardware</h3>
+              <p>for ESP8266 NodeMCU ESP-12E Compatible with Arduino.</p>
+              <a
+                className="btn-large green-btn"
+                href="https://github.com/DiLiubarets/CO2-sourcecode"
+              >
+                GitHub source code
+              </a>
+            </div>
           </div>
         </div>
       </div>

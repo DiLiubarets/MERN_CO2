@@ -4,46 +4,47 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 # MERN_CO2
 
+[Presentation about Web App CO₂ Tracker](https://docs.google.com/presentation/d/1T_OEZk0YMPLbHDZdBbnW2NbGHp798I6xcOkZ6sYGyLg/edit?usp=sharing)
+
 ## Description
 
-Our application allows users to understand the quality of the air around them through the power of the IoT. See what CO₂ levels are right now, in the past, and compare your stored data over time to make informed decisions for your needs. Also understand your local weather, to help guide your decisions to go outside.
+Our application allows users to understand the quality of the air around them with scientific precision through the power of the IoT. See what CO₂ levels are right now, in the past, and compare your stored data over time to make informed decisions for your needs.
 
 ## Table of Contents
 
-* [Device Setup](#Device-Setup)
-* [Usage](#usage)
-* [License](#license)
-* [Contributing](#contributing)
-* [Questions](#questions)
-
+- [Device Setup](#Device-Setup)
+- [Usage](#usage)
+- [License](#license)
+- [Contributing](#contributing)
+- [Questions](#questions)
 
 ## Device-Setup
 
-- All the `code` required to get started
+- All the [Code](https://github.com/DiLiubarets/CO2-sourcecode/tree/main/co2_tracker) required to get started
 
 ### Clone
 
-- Clone this repo to your local machine using `{DINA, put a repo to only the chip code here}`
+- Clone this repo to your local machine using [repo to the chip code here](https://github.com/DiLiubarets/CO2-sourcecode)
 
 ### Setup
-
 
 > install npm packages
 
 ```shell
 $ npm install
+$ npm run dev 
 ```
 
 ### What it should look like
 
 ![Screenshot](#)
+![](./assets/shortvideoaboutproject.mp4)
 
 ## Usage
 
 Go to (https://mern-co2-tracker.herokuapp.com/) to sign up for an account and get your API key to connect to your device. Then, use the dashboard by entering the time and date you want to measure. If you want to check the weather, we recommend using Google Chrome so you can allow our app to know your location. This data is not stored on our servers, nor is it tracked. OpenWeather might register that we made a "check weather" request for your location through our API, but we have no way of connecting its use to your account.
 
 ## License
-
 
 ## Contributing
 
@@ -52,10 +53,11 @@ Go to (https://mern-co2-tracker.herokuapp.com/) to sign up for an account and ge
 ### Step 1
 
 - **Option 1**
-    - 🍴 Fork this repo!
+
+  - 🍴 Fork this repo!
 
 - **Option 2**
-    - 👯 Clone this repo to your local machine using `https://github.com/DiLiubarets/MERN_CO2.git`
+  - 👯 Clone this repo to your local machine using `https://github.com/DiLiubarets/MERN_CO2.git`
 
 ### Step 2
 
@@ -65,10 +67,9 @@ Go to (https://mern-co2-tracker.herokuapp.com/) to sign up for an account and ge
 
 - 🔃 Create a new pull request using <a href="https://github.com/DiLiubarets/MERN_CO2.git/compare/" target="_blank">`https://github.com/DiLiubarets/MERN_CO2.git/compare/`</a>.
 
-
 ## Questions
 
-Want to know more? Look us up on GitHub. 
+Want to know more? Look us up on GitHub.
 
 Dina's username is DiLiubarets and her profile is [here](https://www.github.com/DiLiubarets)
 
