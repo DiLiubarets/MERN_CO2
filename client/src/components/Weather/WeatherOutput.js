@@ -26,12 +26,12 @@ const WeatherOutput = ({ weatherData }) => {
           <table className="centered">
             <tbody>
               <tr>
-                <td>
+                <td className="weather-td">
                   Location: 
                   <br />
                   {weatherData.name}, {weatherData.sys.country}
                 </td>
-                <td>
+                <td className="weather-td">
                   <p>
                     Temperature:
                     <br />
@@ -40,7 +40,7 @@ const WeatherOutput = ({ weatherData }) => {
                       : `${toCelsius(temp)} °C `}
                   </p>
                 </td>
-                <td>
+                <td className="weather-td">
                   Toggle:
                   <br />
                   <label className="toggle-weather">
@@ -66,7 +66,7 @@ const WeatherOutput = ({ weatherData }) => {
                 </td>
               </tr>
               <tr>
-                <td>
+              <td className="weather-td">
                   Conditions: {weatherData.weather[0].main}{" "}
                   <img
                     className="weather-icon"
@@ -76,14 +76,14 @@ const WeatherOutput = ({ weatherData }) => {
                   <br />
                   Specifically: {weatherData.weather[0].description}
                 </td>
-                <td>
+                <td className="weather-td">
                   Min temperature:
                   <br />
                   {option === "fahrenheit"
                     ? `${Math.round(temp_min)} °F`
                     : `${toCelsius(temp_min)} °C `}
                 </td>
-                <td>
+                <td className="weather-td">
                   Max temperature:
                   <br />
                   {option === "fahrenheit"
@@ -92,17 +92,17 @@ const WeatherOutput = ({ weatherData }) => {
                 </td>
               </tr>
               <tr>
-                <td>
+              <td className="weather-td">
                   Feels like:
                   <br />
                   {option === "fahrenheit"
                     ? `${Math.round(feels_like)} °F`
                     : `${toCelsius(feels_like)} °C `}
                 </td>
-                <td>Pressure: 
+                <td className="weather-td">Pressure: 
                 <br />
                 {pressure} hpa</td>
-                <td>Humidity: 
+                <td className="weather-td">Humidity: 
                 <br />
                 {humidity} %</td>
               </tr>
