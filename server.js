@@ -19,9 +19,10 @@ const app = express();
 const port = process.env.PORT || 5000;
 
 // Stripe
-const YOUR_DOMAIN = "https://mern-co2-tracker.herokuapp.com/checkout";
+const YOUR_DOMAIN = "http://mern-co2-tracker.herokuapp.com/checkout" || "http://localhost:3000/checkout";
 
 app.post("/create-session", async (req, res) => {
+  console.log("/create-session")
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ["card"],
     line_items: [
@@ -56,7 +57,7 @@ app.use(bodyParser.json());
 // Connect to MongoDB
 mongoose
   .connect(
-    "mongodb+srv://diLiu:Ukrayina91@cluster0.t7tmk.mongodb.net/note?retryWrites=true&w=majority" ,
+    process.env.MONGODB_URI,
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
