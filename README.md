@@ -32,7 +32,7 @@ Our application allows users to understand the quality of the air around them wi
 
 ```shell
 $ npm install
-$ npm run dev 
+$ npm run dev
 ```
 
 ### What it should look like
