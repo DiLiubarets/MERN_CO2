@@ -7,7 +7,7 @@
     padding: 9px 14px 9px 14px;
     border-radius: 30px;
 }
-td {
+.weather-td {
     width: 33%;
 }
 tr {

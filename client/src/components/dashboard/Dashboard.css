@@ -54,6 +54,10 @@ input#stopDay {
 .datepicker-calendar {
   border-radius: 30px !important;
 }
+.datepicker-day-button:focus {
+  background-color: #00ff45 !important;
+  border-radius: 0;
+}
 .timepicker-digital-display {
   background-color: #113031 !important;
 }
@@ -137,4 +141,9 @@ input#stopDay {
   box-shadow: 0px 0px 20px 1px #ccc !important; /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
   margin-top: -10px !important;
   margin-bottom: 40px !important;
+}
+.is-selected {
+  background-color: #00ff45 !important;
+  border-radius: 0 !important;
+  color: #113031 !important;
 }
