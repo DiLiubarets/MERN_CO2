@@ -38,7 +38,8 @@ $ npm run dev
 ### What it should look like
 
 ![Screenshot](#)
-![](./assets/shortvideoaboutproject.mp4)
+![video](./assets/shortvideoaboutproject.mp4)
+![Web App CO₂ Tracker](ezgif.com-gif-maker.gif)
 
 ## Usage
 
