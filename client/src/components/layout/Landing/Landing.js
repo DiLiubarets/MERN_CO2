@@ -15,9 +15,10 @@ class Landing extends Component {
                 </div>
                 <p>
                   Our application allows users to understand the quality of the
-                  air around them through the power of the IoT. See what CO₂
-                  levels are right now, in the past, and compare your stored
-                  data over time to make informed decisions for your needs.
+                  air around them with scientific precision through the power of
+                  the IoT. See what CO₂ levels are right now, in the past, and
+                  compare your stored data over time to make informed decisions
+                  for your needs.
                 </p>
                 <div className="card-action center">
                   <Link to="/login">

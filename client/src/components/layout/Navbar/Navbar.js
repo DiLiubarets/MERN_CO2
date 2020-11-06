@@ -5,16 +5,15 @@ import LogOut from "../../auth/Logout";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../../actions/authActions";
-import M from  'materialize-css/dist/js/materialize.min.js';
+import M from "materialize-css/dist/js/materialize.min.js";
 
 class Navbar extends Component {
   componentDidMount() {
-    let sidenav = document.querySelector('#slide-out');
+    let sidenav = document.querySelector("#slide-out");
     M.Sidenav.init(sidenav, {});
   }
 
   render() {
-
     return (
       <nav className="navbar-style nav-extended">
         <div className="nav-wrapper">
@@ -33,15 +32,20 @@ class Navbar extends Component {
               alt="<MERN/> CO₂ Tracker logo"
             />
           </NavLink>
-          <a href="/#" data-target="slide-out" className="sidenav-trigger right"><i className="material-icons">menu</i></a>
+          <a
+            href="/#"
+            data-target="slide-out"
+            className="sidenav-trigger right"
+          >
+            <i className="material-icons">menu</i>
+          </a>
 
           <ul id="nav-mobile" className="right hide-on-med-and-down mr20">
-              
             {this.props.auth.isAuthenticated && (
               <div>
                 <li>
-                <NavLink to="/deviceInfo">Device Info</NavLink>
-              </li>
+                  <NavLink to="/deviceInfo">Device Info</NavLink>
+                </li>
                 <li>
                   <NavLink to="/dashboard">Dashboard</NavLink>
                 </li>
@@ -57,8 +61,8 @@ class Navbar extends Component {
             {!this.props.auth.isAuthenticated && (
               <div>
                 <li>
-                <NavLink to="/deviceInfo">Device Info</NavLink>
-              </li>
+                  <NavLink to="/deviceInfo">Device Info</NavLink>
+                </li>
                 <li>
                   <NavLink to="/login">Log In</NavLink>
                 </li>
@@ -70,9 +74,11 @@ class Navbar extends Component {
           </ul>
 
           <ul id="slide-out" className="sidenav">
-              
             {this.props.auth.isAuthenticated && (
               <div>
+                <li>
+                  <NavLink to="/deviceInfo">Device Info</NavLink>
+                </li>
                 <li>
                   <NavLink to="/dashboard">Dashboard</NavLink>
                 </li>
@@ -88,8 +94,8 @@ class Navbar extends Component {
             {!this.props.auth.isAuthenticated && (
               <div>
                 <li>
-                <NavLink to="/deviceInfo">Device Info</NavLink>
-              </li>
+                  <NavLink to="/deviceInfo">Device Info</NavLink>
+                </li>
                 <li>
                   <NavLink to="/login">Log In</NavLink>
                 </li>
