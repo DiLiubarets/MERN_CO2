@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Slider from "../Stripe/Stripe";
 import Stripe from "../Stripe/Stripe";
 import ModuleDisplay from "../about/ModuleDisplay";
 import DevelopmentBoard from "../about/DevelopmentBoard";
