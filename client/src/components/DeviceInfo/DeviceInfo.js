@@ -11,7 +11,7 @@ class DeviceInfo extends Component {
       <div>
         <div className="row">
           <div className="col s12 m10 l8 col-centered">
-            <h1 className="center-align" style={{ fontSize: "40px" }}>
+            <h1 className="center-align">
               Device Info
             </h1>
             <p className="center-align">
@@ -40,17 +40,23 @@ class DeviceInfo extends Component {
               <Sensor />
             </div>
             <hr className="breaker" />
-            <div className="row">
-              <h3 className="mt20">Source Code for hardware</h3>
-              <p>for ESP8266 NodeMCU ESP-12E Compatible with Arduino.</p>
+            <div className="row center-align">
+            <div className="col s12 center-align">
+              <h3><span role="img" aria-label="Woman Technologist Emoji">👩‍💻</span>{" "}Source Code for hardware
+              </h3>
+              <p>All the code you need to make your own CO₂ tracker device.</p>
+              <p>For ESP8266 NodeMCU ESP-12E Compatible with Arduino.</p>
               <a
                 className="btn-large green-btn"
                 href="https://github.com/DiLiubarets/CO2-sourcecode"
               >
                 GitHub source code
               </a>
+              <hr className="breaker" />
             </div>
           </div>
+          </div>
+
         </div>
       </div>
     );
