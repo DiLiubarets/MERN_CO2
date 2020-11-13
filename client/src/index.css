@@ -20,6 +20,12 @@ h6 {
   font-family: "Poppins", Arial, Helvetica, sans-serif;
   font-weight: 600;
 }
+h1 {
+  font-size: 52px;
+}
+h2 {
+  font-size: 43px;
+}
 h3 {
   font-size: 34px;
 }
@@ -56,6 +62,9 @@ h3 {
 }
 .m20 {
   margin: 20px !important;
+}
+.m-5 {
+  margin: 5px !important;
 }
 .mb20 {
   margin-bottom: 20px !important;
@@ -135,4 +144,8 @@ input[type="number"]:not(.browser-default):focus:not([readonly]) + label,
 input[type="search"]:not(.browser-default):focus:not([readonly]) + label,
 textarea.materialize-textarea:focus:not([readonly]) + label {
   color: #00ff45 !important;
+}
+.breaker {
+  border-color: transparent;
+  padding: 30px 0 30px 0;
 }

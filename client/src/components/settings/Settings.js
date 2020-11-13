@@ -85,7 +85,7 @@ class Settings extends Component {
               className="validate"
             />
             <button
-              className="green-btn btn-small ml30"
+              className="btn-large green-btn mb20"
               onClick={this.requestNewKey}
             >
               Request new API key
