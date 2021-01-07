@@ -37,5 +37,5 @@
     "validator": "^10.9.0",
     "ws": "^7.3.1"
   },
-  "proxy": "http://localhost:5000"
+  "proxy": "http://localhost:5000/"
 }

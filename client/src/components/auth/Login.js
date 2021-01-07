@@ -11,6 +11,7 @@ class Login extends Component {
     this.state = {
       email: "",
       password: "",
+      logging: false,
       errors: {},
     };
   }
@@ -28,8 +29,10 @@ class Login extends Component {
     }
 
     if (nextProps.errors) {
+      console.log(nextProps.errors)
       this.setState({
         errors: nextProps.errors,
+        logging: false
       });
     }
   }
@@ -46,11 +49,13 @@ class Login extends Component {
       password: this.state.password,
     };
 
-    this.props.loginUser(userData);
+    this.setState({
+      logging: true
+    })
+    this.props.loginUser(userData)
   };
 
   render() {
-    const { errors } = this.state;
 
     return (
       <div className="row m20">
@@ -68,29 +73,29 @@ class Login extends Component {
               <input
                 onChange={this.onChange}
                 value={this.state.email}
-                error={errors.email}
+                error={this.state.errors.email}
                 id="email"
                 type="email"
                 className={classnames("", {
-                  invalid: errors.email,
+                  invalid: this.state.errors.email,
                 })}
               />
               <label htmlFor="email">Email</label>
-              <span className="red-text">{errors.email}</span>
+              <span className="red-text">{this.state.errors.email}</span>
             </div>
             <div className="input-field col s12 no-padding">
               <input
                 onChange={this.onChange}
                 value={this.state.password}
-                error={errors.password}
+                error={this.state.errors.password}
                 id="password"
                 type="password"
                 className={classnames("", {
-                  invalid: errors.password,
+                  invalid: this.state.errors.password,
                 })}
               />
               <label htmlFor="password">Password</label>
-              <span className="red-text">{errors.password}</span>
+              <span className="red-text">{this.state.errors.password}</span>
             </div>
             <div className="col s12 mb20 no-padding">
               <button
@@ -100,6 +105,25 @@ class Login extends Component {
                 Log In
               </button>
             </div>
+            
+            {this.state.logging && (
+              <div>
+                <div id="spinner" className="preloader-wrapper big active">
+                  <div className="spinner-layer spinner-green-only">
+                    <div className="circle-clipper left">
+                      <div className="circle"></div>
+                    </div><div className="gap-patch">
+                      <div className="circle"></div>
+                    </div><div className="circle-clipper right">
+                      <div className="circle"></div>
+                    </div>
+                  </div>
+                </div>
+                <p>Logging in, please wait...</p>
+              </div>
+            )}
+
+
           </form>
         </div>
       </div>

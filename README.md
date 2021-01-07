@@ -41,7 +41,7 @@ $ npm run dev
 
 ## Usage
 
-Go to (https://mern-co2-tracker.herokuapp.com/) to sign up for an account and get your API key to connect to your device. Then, use the dashboard by entering the time and date you want to measure. If you want to check the weather, we recommend using Google Chrome so you can allow our app to know your location. This data is not stored on our servers, nor is it tracked. OpenWeather might register that we made a "check weather" request for your location through our API, but we have no way of connecting its use to your account.
+Go to ![Live demo](https://mern-co2-tracker.herokuapp.com/) to sign up for an account and get your API key to connect to your device. Then, use the dashboard by entering the time and date you want to measure. If you want to check the weather, we recommend using Google Chrome so you can allow our app to know your location. This data is not stored on our servers, nor is it tracked. OpenWeather might register that we made a "check weather" request for your location through our API, but we have no way of connecting its use to your account.
 
 ## License
 

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "./Landing.css";
+import Demogif from "../../../images/demo.gif"
 
 class Landing extends Component {
   render() {
@@ -18,6 +19,15 @@ class Landing extends Component {
               your stored data over time to make informed decisions for your
               needs.
             </p>
+
+            <img
+              alt="Demo gif"
+              src={Demogif}
+              className="device-img img-centered"
+            />
+
+            <br />
+
             <div className="two-buttons">
               <Link to="/login">
                 <button className="btn-large green-btn m-5">Log In</button>
