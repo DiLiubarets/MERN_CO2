@@ -6,7 +6,6 @@ const passport = require("passport");
 const path = require("path");
 const ws = require("ws");
 
-
 // DB Config
 const dbCred = require("./config/dev");
 const stripe = require("stripe")(process.env.stripe || dbCred.stripe);
@@ -19,10 +18,12 @@ const app = express();
 const port = process.env.PORT || 5000;
 
 // Stripe
-const YOUR_DOMAIN = "http://mern-co2-tracker.herokuapp.com/checkout" || "http://localhost:3000/checkout";
+const YOUR_DOMAIN =
+  "http://mern-co2-tracker.herokuapp.com/checkout" ||
+  "http://localhost:3000/checkout";
 
 app.post("/create-session", async (req, res) => {
-  console.log("/create-session")
+  console.log("/create-session");
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ["card"],
     line_items: [
@@ -58,6 +59,7 @@ app.use(bodyParser.json());
 mongoose
   .connect(
     process.env.MONGODB_URI,
+    //running for localhost || "mongodb+srv://user:<password>@cluster0.t7tmk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,

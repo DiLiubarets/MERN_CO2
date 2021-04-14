@@ -140,7 +140,8 @@ class Dashboard extends Component {
     let context = this;
 
     ws = new WebSocket(
-      "wss://mern-co2-tracker.herokuapp.com/?key=" + user.apiKey
+      "wss://mern-co2-tracker.herokuapp.com/?key=" + user.apiKey 
+      // running for localhost || "ws://localhost:5000/?key=" + user.apiKey 
     );
 
     //request historical
